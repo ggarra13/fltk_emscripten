@@ -1,17 +1,21 @@
 cmake_minimum_required(VERSION 3.20)
 project(fltk_emscripten)
 
+set(CMAKE_CXX_STANDARD 17)
 set(FLTK_BUILD_TEST OFF CACHE BOOL " " FORCE)
 set(FLTK_USE_PTHREADS OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLUID OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLTK_OPTIONS OFF CACHE BOOL " " FORCE)
-set(FLTK_BUILD_GL ON CACHE BOOL " " FORCE)
+set(FLTK_BUILD_GL OFF CACHE BOOL " " FORCE)
+set(FLTK_BUILD_PDF_DOCS OFF CACHE BOOL " " FORCE)
+set(FLTK_OPTION_PEN_SUPPORT OFF CACHE BOOL " " FORCE)
 
 include(FetchContent)
 FetchContent_Declare(
     FLTK
-    GIT_REPOSITORY      https://github.com/MoAlyousef/fltk_wasm32_emscripten
-    GIT_TAG             emscripten
+    GIT_REPOSITORY      git@github.com:ggarra13/fltk.git
+    #GIT_TAG             emscripten
+    GIT_TAG             vk
     GIT_SHALLOW         ON
 )
 
@@ -30,7 +34,7 @@ add_executable(unittests
     src/unittest_fast_shapes.cxx  
     src/unittest_scrollbarsize.cxx  
     src/unittest_unicode.cxx
-    src/unittest_gl.cxx
+    # src/unittest_gl.cxx
     src/unittest_circles.cxx         
     src/unittest_images.cxx       
     src/unittest_symbol.cxx         
