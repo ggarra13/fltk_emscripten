@@ -30,12 +30,22 @@ add_executable(simple src/simple.cpp)
 target_link_libraries(simple PRIVATE fltk::fltk fltk::images)
 set_target_properties(simple PROPERTIES SUFFIX .html LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sMAX_WEBGL_VERSION=2 -sOFFSCREENCANVAS_SUPPORT=1 --bind --preload-file ${CMAKE_CURRENT_LIST_DIR}/images@. --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")
 
+
+set(FLTK_GL)
+set(GL_LINK_FLAGS "")
+if(FLTK_BUILD_GL)
+    set(FLTK_GL fltk::gl)
+    set(GL_LINK_FLAGS "-sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=1 -sLEGACY_GL_EMULATION=1 -sGL_UNSAFE_OPTS=1")
+    set(GL_TESTS src/unittest_gl.cxx)
+elseif(FLTK_BUILD_WEBGPU)
+    set(WEBGPU_TESTS )
+endif()
+
 add_executable(unittests 
     src/unittest_about.cxx           
     src/unittest_fast_shapes.cxx  
     src/unittest_scrollbarsize.cxx  
     src/unittest_unicode.cxx
-    src/unittest_gl.cxx
     src/unittest_circles.cxx         
     src/unittest_images.cxx       
     src/unittest_symbol.cxx         
@@ -46,14 +56,10 @@ add_executable(unittests
     src/unittests.cxx
     src/unittest_core.cxx            
     src/unittest_schemes.cxx      
-    src/unittest_text.cxx)
-
-target_link_libraries(unittests PRIVATE fltk::fltk fltk::images fltk::gl)
-
-set(GL_LINK_FLAGS "")
-if(FLTK_BUILD_GL)
-    set(GL_LINK_FLAGS "-sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=1 -sLEGACY_GL_EMULATION=1")
-elseif(FLTK_BUILD_WEBGPU)
-endif()
+    src/unittest_text.cxx
+    ${GL_TESTS}
+    ${WEBGPU_TESTS}
+)
+target_link_libraries(unittests PRIVATE fltk::fltk fltk::images ${FLTK_GL})
 set_target_properties(unittests PROPERTIES SUFFIX .html
     LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 ${GL_LINK_FLAGS} --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")

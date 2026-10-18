@@ -124,6 +124,12 @@ public:
     mode(FL_RGB);
   }
 
+  ~Ut_Gl_Triangle_Window()
+        {
+            glUseProgram(0);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        }
+
   void draw() FL_OVERRIDE {
     if (!valid()) {
       init_gl();
@@ -152,18 +158,28 @@ public:
 // ----- test group ---------------------------------------------------- MARK: -
 
 class Ut_Gl_Test : public Fl_Group {
+    Ut_Gl_Triangle_Window* gl_;
 public:
   Ut_Gl_Test(int X, int Y, int W, int H) : Fl_Group(X, Y, W, H) {
     box(FL_NO_BOX);
     Fl_Box *info = new Fl_Box(X, Y, W, 24, "");
     info->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
     info->labelsize(12);
-    Ut_Gl_Triangle_Window *gl =
-      new Ut_Gl_Triangle_Window(X, Y + 28, W, H - 28, info);
-    gl->border(0);
-    gl->end();
-    resizable(gl);
+    gl_ = new Ut_Gl_Triangle_Window(X, Y + 28, W, H - 28, info);
+    gl_->border(0);
+    gl_->end();
+    resizable(gl_);
     end();
+  }
+
+  void show() FL_OVERRIDE {
+    Fl_Group::show();
+    if (gl_) gl_->show();
+  }
+
+  void hide() FL_OVERRIDE {
+    if (gl_) gl_->hide();          // this finally runs delete_div()
+    Fl_Group::hide();
   }
 };
 
