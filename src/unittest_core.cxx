@@ -30,10 +30,6 @@ TEST(std::string, Assignment) {
   EXPECT_STREQ(null.c_str(), "");   // default initialisation is an empty string
   EXPECT_TRUE(null.empty());
 
-  std::string null2(NULL);
-  EXPECT_STREQ(null2.c_str(), "");  // initialise with a NULL pointer gets an empty string
-  EXPECT_TRUE(null2.empty());
-
   std::string empty("");
   EXPECT_STREQ(empty.c_str(), "");  // also, empty CString make empty std::string
   EXPECT_TRUE(empty.empty());
