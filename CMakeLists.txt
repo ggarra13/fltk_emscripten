@@ -6,7 +6,8 @@ set(FLTK_BUILD_TEST OFF CACHE BOOL " " FORCE)
 set(FLTK_USE_PTHREADS OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLUID OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLTK_OPTIONS OFF CACHE BOOL " " FORCE)
-set(FLTK_BUILD_GL OFF CACHE BOOL " " FORCE)
+set(FLTK_BUILD_GL ON CACHE BOOL " " FORCE)
+#set(FLTK_BUILD_WEBGPU ON CACHE BOOL " " FORCE)
 set(FLTK_BUILD_PDF_DOCS OFF CACHE BOOL " " FORCE)
 set(FLTK_OPTION_PEN_SUPPORT OFF CACHE BOOL " " FORCE)
 
@@ -14,8 +15,8 @@ include(FetchContent)
 FetchContent_Declare(
     FLTK
     GIT_REPOSITORY      git@github.com:ggarra13/fltk.git
-    #GIT_TAG             emscripten
-    GIT_TAG             vk
+    GIT_TAG             emscripten
+    #GIT_TAG             vk
     GIT_SHALLOW         ON
 )
 
@@ -27,14 +28,14 @@ set_target_properties(index PROPERTIES SUFFIX .html LINK_FLAGS "-s WASM=1 -sALLO
 
 add_executable(simple src/simple.cpp)
 target_link_libraries(simple PRIVATE fltk::fltk fltk::images)
-set_target_properties(simple PROPERTIES SUFFIX .html LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 --bind --preload-file ${CMAKE_CURRENT_LIST_DIR}/images@. --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")
+set_target_properties(simple PROPERTIES SUFFIX .html LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sMAX_WEBGL_VERSION=2 -sOFFSCREENCANVAS_SUPPORT=1 --bind --preload-file ${CMAKE_CURRENT_LIST_DIR}/images@. --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")
 
 add_executable(unittests 
     src/unittest_about.cxx           
     src/unittest_fast_shapes.cxx  
     src/unittest_scrollbarsize.cxx  
     src/unittest_unicode.cxx
-    # src/unittest_gl.cxx
+    src/unittest_gl.cxx
     src/unittest_circles.cxx         
     src/unittest_images.cxx       
     src/unittest_symbol.cxx         
@@ -46,5 +47,13 @@ add_executable(unittests
     src/unittest_core.cxx            
     src/unittest_schemes.cxx      
     src/unittest_text.cxx)
-target_link_libraries(unittests PRIVATE fltk::fltk fltk::images GL)
-set_target_properties(unittests PROPERTIES SUFFIX .html LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")
+
+target_link_libraries(unittests PRIVATE fltk::fltk fltk::images fltk::gl)
+
+set(GL_LINK_FLAGS "")
+if(FLTK_BUILD_GL)
+    set(GL_LINK_FLAGS "-sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=1 -sLEGACY_GL_EMULATION")
+elseif(FLTK_BUILD_WEBGPU)
+endif()
+set_target_properties(unittests PROPERTIES SUFFIX .html
+    LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 ${GL_LINK_FLAGS} --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")

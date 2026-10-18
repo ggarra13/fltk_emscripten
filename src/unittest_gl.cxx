@@ -233,7 +233,7 @@ TEST(OpenGL, CoexistsWithFltkWindow) {
   EXPECT_EQ(img.h(), kSize);
   EXPECT_EQ(img.d(), 4);
   EXPECT_EQ(img.fail(), 0);
-  const char *d = img.data()[0];
+  const unsigned char *d = (const unsigned char*)img.data()[0];
   EXPECT_EQ(d[0], 0);
   EXPECT_EQ(d[1], 255);
   EXPECT_EQ(d[2], 0);
