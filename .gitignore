@@ -1,3 +1,4 @@
 bin
 docs/*.wasm
+docs/*.data
 docs/*.js
