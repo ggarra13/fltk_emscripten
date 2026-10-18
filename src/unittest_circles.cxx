@@ -20,6 +20,9 @@
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>
 #include <FL/math.h>
+#if HAVE_GL
+#include <FL/Fl_Gl_Window.H>
+#endif
 
 //
 // --- test drawing circles and arcs ------
@@ -97,6 +100,23 @@ void draw_circles() {
   fl_pie(a+1+50, b+1, w-1, h-1, 45.0, 315.0);
 }
 
+#if HAVE_GL
+
+class Ut_GL_Circle_Test : public Fl_Gl_Window {
+public:
+  Ut_GL_Circle_Test(int x, int y, int w, int h)
+    : Fl_Gl_Window(x, y, w, h) {
+    box(FL_FLAT_BOX);
+  }
+  void draw() FL_OVERRIDE {
+    draw_begin();
+    Fl_Window::draw();
+    draw_circles();
+    draw_end();
+  }
+};
+
+#endif
 
 class Ut_Native_Circle_Test : public Fl_Window {
 public:
@@ -154,6 +174,37 @@ public:
                "If green pixels are missing or red pixels are showing, rectangular frame drawing schould be adjusted (see fl_rect).\n\n"
                "If red pixels show in the corners of the frame in hidpi mode, line endings should be adjusted."
                );
+
+#if HAVE_GL
+
+    a = x+16+250, b = y+34;
+    t = new Fl_Box(a, b-24, 80, 18, "OpenGL");
+    t->align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE);
+
+    /* GLCircleTest *glr = */ new Ut_GL_Circle_Test(a+31, b-1, 200, 200);
+
+    t = new Fl_Box(a, b, 26, 18, "1a");
+    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
+    t->tooltip(// Title:
+               "Testing circle alignment.\n\n"
+               // Description:
+               "This draws a black circle and a black disc, surrounded by a green frame.\n\n"
+               // Things to look out for:
+               "If green pixels are missing, circle drawing must be adjusted (see fl_arc, fl_pie).\n\n"
+               "If red pixels are showing, line width or aligment may be off."
+               );
+    b+=44;
+    t = new Fl_Box(a, b, 26, 18, "2a");
+    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
+    t->tooltip(// Title:
+               "Testing arc and pie drawing.\n\n"
+               // Description:
+               "This draws a black frame, surrounded on the inside and outside by a green frame.\n\n"
+               // Things to look out for:
+               "If green pixels are missing or red pixels are showing, rectangular frame drawing schould be adjusted (see fl_rect).\n\n"
+               "If red pixels show in the corners of the frame in hidpi mode, line endings should be adjusted."
+               );
+#endif
 
     t = new Fl_Box(x+w-1,y+h-1, 1, 1);
     resizable(t);
