@@ -23,10 +23,6 @@
 #include <FL/Fl_Positioner.H>
 #include <FL/fl_draw.H>
 
-#if HAVE_GL
-#include <FL/Fl_Gl_Window.H>
-#endif
-
 //
 // --- test drawing circles and arcs ------
 //
@@ -34,25 +30,6 @@
 class Ut_Complex_Shapes_Test;
 
 void draw_complex(Ut_Complex_Shapes_Test *p);
-
-#if HAVE_GL
-
-class Ut_GL_Complex_Shapes_Test : public Fl_Gl_Window {
-public:
-  Ut_GL_Complex_Shapes_Test(int x, int y, int w, int h)
-    : Fl_Gl_Window(x, y, w, h) {
-    box(FL_FLAT_BOX);
-    end();
-  }
-  void draw() FL_OVERRIDE {
-    draw_begin();
-    Fl_Window::draw();
-    draw_complex((Ut_Complex_Shapes_Test*)parent());
-    draw_end();
-  }
-};
-
-#endif
 
 class Ut_Native_Complex_Shapes_Test : public Fl_Window {
 public:
@@ -72,15 +49,9 @@ public:
 //
 class Ut_Complex_Shapes_Test : public Fl_Group {
   Ut_Native_Complex_Shapes_Test* native_test_window;
-#if HAVE_GL
-  Ut_GL_Complex_Shapes_Test* gl_test_window;
-#endif
   static void update_cb(Fl_Widget*, void *v) {
     Ut_Complex_Shapes_Test* This = (Ut_Complex_Shapes_Test*)v;
     This->native_test_window->redraw();
-#if HAVE_GL
-    This->gl_test_window->redraw();
-#endif
   }
 public:
   Fl_Hor_Value_Slider* scale;
@@ -140,50 +111,6 @@ public:
                "1: a polygon with a camel hump\n"
                "2: a polygon with a camel dip"
                );
-#if HAVE_GL
-
-    a = x+16+250, b = y+34;
-    t = new Fl_Box(a, b-24, 80, 18, "OpenGL");
-    t->align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE);
-
-    gl_test_window = new Ut_GL_Complex_Shapes_Test(a+31, b-1, 200, 200);
-
-    t = new Fl_Box(a, b, 26, 18, "1a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing complex drawing with transformations.\n\n"
-               // Description:
-               "Draw a point pattern, an open line, a closed line, and a convex polygon.\n\n"
-               // Things to look out for:
-               "Use the controls at the bottom right to scale, rotate, and move the patterns."
-               );
-    b+=44;
-    t = new Fl_Box(a, b, 28, 18, "2a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing complex polygons.\n\n"
-               // Description:
-               "Draw polygons at different leves of complexity. "
-               "All polygons should be within the blue boundaries\n\n"
-               // Things to look out for:
-               "1: a convex polygon\n"
-               "2: a non-convex polygon\n"
-               "3: two polygons in a single operation\n"
-               "4: a polygon with a square hole in it"
-               );
-    b+=44;
-    t = new Fl_Box(a, b, 28, 18, "3a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing complex polygons with arcs.\n\n"
-               // Description:
-               "Draw polygons with an arc section. "
-               "All polygons should be within the blue boundaries\n\n"
-               // Things to look out for:
-               "1: a polygon with a camel hump\n"
-               "2: a polygon with a camel dip"
-               );
-#endif
 
     a = UT_TESTAREA_X+UT_TESTAREA_W-250;
     b = UT_TESTAREA_Y+UT_TESTAREA_H-50;

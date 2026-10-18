@@ -29,7 +29,8 @@
 
 #if defined(__EMSCRIPTEN__)
 // Remove this include if <FL/gl.h> already pulls in the GLES2 declarations.
-#include <GLES2/gl2.h>
+// #include <GLES2/gl2.h>
+#include <FL/gl.h>
 
 // ----- GL window ----------------------------------------------------- MARK: -
 
@@ -121,7 +122,7 @@ public:
     : Fl_Gl_Window(X, Y, W, H),
       program_(0), vbo_(0), pos_loc_(-1), col_loc_(-1), ok_(false), info_(info)
   {
-    mode(FL_RGB | FL_DOUBLE);
+    mode(FL_RGB);
   }
 
   void draw() FL_OVERRIDE {

@@ -19,9 +19,6 @@
 #include <config.h>
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>         // fl_text_extents()
-#if HAVE_GL
-#include <FL/Fl_Gl_Window.H>
-#endif
 
 #if 0
 
@@ -184,25 +181,6 @@ void draw_fast_shapes() {
   fl_line_style(FL_SOLID, 1);
 }
 
-#if HAVE_GL
-
-class Ut_GL_Rect_Test : public Fl_Gl_Window {
-public:
-  Ut_GL_Rect_Test(int x, int y, int w, int h)
-    : Fl_Gl_Window(x, y, w, h) {
-    box(FL_FLAT_BOX);
-  }
-  void draw() FL_OVERRIDE {
-    draw_begin();
-    fl_color(color());
-    fl_rectf(0, 0, w(), h());
-    draw_fast_shapes();
-    draw_end();
-  }
-};
-
-#endif
-
 class Ut_Native_Rect_Test : public Fl_Window {
 public:
   Ut_Native_Rect_Test(int x, int y, int w, int h)
@@ -300,81 +278,6 @@ public:
                "Green and red pixels mark the beginning and end of single lines."
                "The line caps should be flat, the joints should be of type \"miter\"."
                );
-
-#if HAVE_GL
-
-    a = x+16+250, b = y+34;
-    t = new Fl_Box(a, b-24, 80, 18, "OpenGL");
-    t->align(FL_ALIGN_LEFT|FL_ALIGN_INSIDE);
-
-    /*GLRectTest *glr = */ new Ut_GL_Rect_Test(a+31, b-1, 200, 200);
-
-    t = new Fl_Box(a, b, 26, 18, "1a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing filled rectangle alignment.\n\n"
-               // Description:
-               "This draws a black rectangle, surrounded by a green frame.\n\n"
-               // Things to look out for:
-               "If green pixels are missing, filled rectangles draw too big (see fl_rectf).\n\n"
-               "If red pixels are showing, filled rectangles are drawn too small."
-               );
-
-    b+=24;
-    t = new Fl_Box(a, b, 26, 18, "2a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing rectangle frame alignment.\n\n"
-               // Description:
-               "This draws a black frame, surrounded on the inside and outside by a green frame.\n\n"
-               // Things to look out for:
-               "If green pixels are missing or red pixels are showing, rectangular frame drawing schould be adjusted (see fl_rect).\n\n"
-               "If red pixels show in the corners of the frame in hidpi mode, line endings should be adjusted."
-               );
-
-    b+=24;
-    t = new Fl_Box(a, b, 26, 18, "3a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing scaled frame alignment.\n\n"
-               // Description:
-               "This draws a 3 units wide black frame, surrounded on the inside and outside by a green frame.\n\n"
-               // Things to look out for:
-               "If green pixels are missing or red pixels are showing, line width schould be adjusted (see fl_line_style).\n\n"
-               "If red pixels show in the corners of the frame in hidpi mode, line endings should be adjusted."
-               );
-    b+=24;
-    t = new Fl_Box(a, b, 26, 18, "4a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing fl_xyline.\n\n"
-               // Description:
-               "This draws 3 versions of fl_xyline surronded with a green outline.\n\n"
-               // Things to look out for:
-               "If green pixels are missing or red pixels are showing, fl_xyline must be adjusted."
-               );
-    b+=48;
-    t = new Fl_Box(a, b, 26, 18, "5a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing fl_yxline.\n\n"
-               // Description:
-               "This draws 3 versions of fl_yxline surronded with a green outline.\n\n"
-               // Things to look out for:
-               "If green pixels are missing or red pixels are showing, fl_yxline must be adjusted."
-               );
-    b+=48;
-    t = new Fl_Box(a, b, 26, 18, "6a");
-    t->box(FL_ROUNDED_BOX); t->color(FL_YELLOW);
-    t->tooltip(// Title:
-               "Testing fl_line(int...).\n\n"
-               // Description:
-               "This draws 2 lines at differnet widths, and one connected line.\n\n"
-               // Things to look out for:
-               "Green and red pixels mark the beginning and end of single lines."
-               "The line caps should be flat, the joints should be of type \"miter\"."
-               );
-#endif
 
     t = new Fl_Box(x+w-1,y+h-1, 1, 1);
     resizable(t);
