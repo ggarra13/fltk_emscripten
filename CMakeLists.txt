@@ -52,7 +52,7 @@ target_link_libraries(unittests PRIVATE fltk::fltk fltk::images fltk::gl)
 
 set(GL_LINK_FLAGS "")
 if(FLTK_BUILD_GL)
-    set(GL_LINK_FLAGS "-sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=1 -sLEGACY_GL_EMULATION")
+    set(GL_LINK_FLAGS "-sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=1 -sLEGACY_GL_EMULATION=1")
 elseif(FLTK_BUILD_WEBGPU)
 endif()
 set_target_properties(unittests PROPERTIES SUFFIX .html
