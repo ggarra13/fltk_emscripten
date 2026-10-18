@@ -28,8 +28,7 @@
 #include <stdio.h>
 
 #if defined(__EMSCRIPTEN__)
-// Remove this include if <FL/gl.h> already pulls in the GLES2 declarations.
-// #include <GLES2/gl2.h>
+
 #include <FL/gl.h>
 
 // ----- GL window ----------------------------------------------------- MARK: -
@@ -161,6 +160,8 @@ public:
     info->labelsize(12);
     Ut_Gl_Triangle_Window *gl =
       new Ut_Gl_Triangle_Window(X, Y + 28, W, H - 28, info);
+    gl->border(0);
+    gl->end();
     resizable(gl);
     end();
   }
