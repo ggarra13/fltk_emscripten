@@ -1,2 +1,3 @@
 bin
-docs
+docs/*.wasm
+docs/*.js
