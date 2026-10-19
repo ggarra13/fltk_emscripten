@@ -7,18 +7,28 @@ set(FLTK_USE_PTHREADS OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLUID OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLTK_OPTIONS OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_GL OFF CACHE BOOL " " FORCE)
-set(FLTK_BUILD_WEBGPU ON CACHE BOOL " " FORCE)
 set(FLTK_BUILD_PDF_DOCS OFF CACHE BOOL " " FORCE)
 set(FLTK_OPTION_PEN_SUPPORT OFF CACHE BOOL " " FORCE)
+
+set(PORT_DIR "/home/gga/code/lib/emscripten/dawn/emdawnwebgpu_pkg/")
+set(EMDAWN_PORT "--use-port=${PORT_DIR}emdawnwebgpu.port.py")
+
+set(FLTK_BUILD_WEBGPU ON CACHE BOOL " " FORCE)
+set(FLTK_WEBGPU_INCLUDE_DIR "" CACHE PATH " " FORCE)
+
+if(FLTK_BUILD_WEBGPU)
+    add_compile_options(${EMDAWN_PORT})   # applies to FLTK and your targets
+    add_link_options(${EMDAWN_PORT})
+endif()
 
 include(FetchContent)
 FetchContent_Declare(
     FLTK
     GIT_REPOSITORY      git@github.com:ggarra13/fltk.git
-    GIT_TAG             webgpu
+    GIT_TAG             webgpu2
     #GIT_TAG             emscripten # webgl
     #GIT_TAG             vk #  NO webgl and webgpu
-    GIT_SHALLOW         ON
+    # GIT_SHALLOW         ON
 )
 
 FetchContent_MakeAvailable(FLTK)
@@ -43,7 +53,7 @@ set(WEBGPU_EM_PORT_FILE "")
 if(FLTK_BUILD_WEBGPU)
     set(FLTK_WEBGPU fltk::webgpu)
     set(WEBGPU_LINK_FLAGS "")
-    set(WEBGPU_EM_PORT_FILE "--use-port=/home/gga/code/lib/emscripten/dawn/emdawnwebgpu_pkg/emdawnwebgpu.port.py")
+    set(WEBGPU_EM_PORT_FILE "--use-port=${PORT_DIR}emdawnwebgpu.port.py")
 endif()
 
 
@@ -58,26 +68,27 @@ set_target_properties(simple PROPERTIES SUFFIX .html LINK_FLAGS "-s WASM=1 -sALL
 
 
 
-add_executable(unittests 
-    src/unittest_about.cxx           
-    src/unittest_fast_shapes.cxx  
-    src/unittest_scrollbarsize.cxx  
+add_executable(unittests
+    src/unittest_about.cxx
+    src/unittest_fast_shapes.cxx
+    src/unittest_scrollbarsize.cxx
     src/unittest_unicode.cxx
     src/unittest_circles.cxx
     src/unittest_gl.cxx
-    src/unittest_images.cxx       
-    src/unittest_symbol.cxx         
+    src/unittest_images.cxx
+    src/unittest_symbol.cxx
     src/unittest_viewport.cxx
-    src/unittest_complex_shapes.cxx  
-    src/unittest_points.cxx       
-    src/unittest_terminal.cxx       
+    src/unittest_complex_shapes.cxx
+    src/unittest_points.cxx
+    src/unittest_terminal.cxx
     src/unittests.cxx
-    src/unittest_core.cxx            
-    src/unittest_schemes.cxx      
+    src/unittest_core.cxx
+    src/unittest_schemes.cxx
     src/unittest_text.cxx
     src/unittest_webgpu.cxx
 )
 target_include_directories(unittests PUBLIC ${WEBGPU_INCLUDE_DIRS})
 target_link_libraries(unittests PRIVATE fltk::fltk fltk::images ${FLTK_GL} ${FLTK_WEBGPU})
+
 set_target_properties(unittests PROPERTIES SUFFIX .html
-    LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 ${GL_LINK_FLAGS} ${WEBGPU_LINK_FLAGS} --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html ${EM_DEBUG_FLAGS} ${WEBGPU_EM_PORT_FILE}")
+    LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 ${GL_LINK_FLAGS} ${WEBGPU_LINK_FLAGS} --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html ${EM_DEBUG_FLAGS}")

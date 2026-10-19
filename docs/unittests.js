@@ -886,90 +886,91 @@ function dbg(...args) {
 // === Body ===
 
 var ASM_CONSTS = {
-  138728: ($0) => { let ctx = Emval.toValue($0); ctx.canvas = null; },  
- 138780: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.lineWidth = 0; ctx.save(); },  
- 138859: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.lineWidth = 1; ctx.lineCap = 'butt'; ctx.lineJoin = 'miter'; ctx.setLineDash([ 1, 1 ]); ctx.rect($1, $2, $3, $4); ctx.stroke(); ctx.restore(); },  
- 139051: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.rect($1, $2, $3, $4); ctx.stroke(); },  
- 139124: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.fillRect($1 - 0.5, $2 - 0.5, $3, $4); },  
- 139199: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
- 139314: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
- 139429: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.rect($1, $2, $3, $4); ctx.clip(); },  
- 139512: ($0) => { let ctx = Emval.toValue($0); ctx.save(); ctx.restore(); },  
- 139572: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 139620: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.lineWidth = $1; ctx.lineCap = UTF8ToString($2); ctx.lineJoin = UTF8ToString($3); ctx.setLineDash(new Float64Array(HEAPF64.buffer, $4, $5)); },  
- 139797: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
- 139901: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.stroke(); },  
- 140025: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1 - 2, $2 - 2); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
- 140182: ($0, $1, $2) => { let ctx = Emval.toValue($0); let metrics = ctx.measureText(UTF8ToString($1, $2)); return metrics.width; },  
- 140290: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
- 140445: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.rotate(-1 * $5 * Math.PI / 180); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
- 140637: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.transform($1, $2, $3, $4, $5, $6); },  
- 140709: ($0) => { let ctx = Emval.toValue($0); ctx.resetTransform(); },  
- 140764: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 140809: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.stroke(); },  
- 140926: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 140974: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); },  
- 141077: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 141127: ($0, $1, $2, $3, $4, $5) => { let x = $1; let y = $2; let r = $3; let start = $4; let end = $5; let ctx = Emval.toValue($0); if (start > end) { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180); } else { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180, true); } },  
- 141390: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 141435: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale((w - 1) / 2.0, (h - 1) / 2.0); },  
- 141636: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.scale(2.0 / (w - 1), 2.0 / (h - 1)); ctx.translate(-x - w / 2.0 + 0.5, -y - h / 2.0 + 0.5); },  
- 141839: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 141887: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 141932: ($0, $1, $2, $3, $4) => { let x = $1; let y = $2; let w = $3; let h = $4; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale(w / 2.0, h / 2.0); },  
- 142095: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 142143: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.stroke(); },  
- 142247: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
- 142371: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $4); ctx.stroke(); },  
- 142515: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.stroke(); },  
- 142619: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.stroke(); },  
- 142743: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.lineTo($4, $5); ctx.stroke(); },  
- 142887: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 142932: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 142982: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 143027: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 143077: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 143122: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 143172: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 143217: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 143267: ($0, $1) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.save(); ctx.scale($1, $1); ctx.translate(0.5, 0.5); },  
- 143371: ($0, $1) => { let ctx = Emval.toValue($0); ctx.scale($1, $1); },  
- 143423: ($0) => { let ctx = Emval.toValue($0); ctx.stroke(); ctx.restore(); },  
- 143485: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
- 143564: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.fill(); ctx.restore(); },  
- 143641: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
- 143809: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
- 143997: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.fill(); ctx.restore(); },  
- 144163: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.fill(); ctx.restore(); },  
- 144349: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); ctx.rect($1 - 0.5, $2 - 0.5, 1, 1); ctx.fill(); },  
- 144450: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
- 144503: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
- 144556: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9) => { let ctx = Emval.toValue($0); if ($1) { ctx.moveTo($2, $3); } else { ctx.lineTo($2, $3); } ctx.bezierCurveTo($4, $5, $6, $7, $8, $9); },  
- 144693: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
- 144746: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
- 144799: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
- 144852: () => { let has_api = false; if ("queryLocalFonts" in window) { navigator.permissions.query({ name: "local-fonts" }).then((result) => { if (result.state === "granted" || result.state === "prompt") { has_api = true; }}); } return has_api; },  
- 145086: () => { let canvas = new OffscreenCanvas(100, 100); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
- 145216: ($0, $1) => { let ctx = Emval.toValue($0); ctx.font = UTF8ToString($1); },  
- 145278: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) => { let ctx = Emval.toValue($0); let idata = new ImageData(new Uint8ClampedArray(HEAPF64.buffer, $1, $2), $3, $4); ctx.save(); ctx.rect($5, $6, $9, $10); ctx.clip(); ctx.putImageData(idata, $5, $6, $7, $8, $9, $10); ctx.restore(); },  
- 145509: ($0, $1, $2, $3, $4, $5, $6, $7) => { let ctxt = Emval.toValue($0); let ctx = Emval.toValue($1); let cvs = ctx.canvas; ctxt.drawImage(cvs, $6, $7, $4, $5, $2, $3, $4, $5); },  
- 145647: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2); ctx.save(); },  
- 145727: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.restore(); },  
- 145790: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.style.zIndex = 0; } },  
- 145881: ($0) => { let div = document.getElementById("fltk_div" + $0); let canvas = document.getElementById("fltk_canvas" + $0); if (div && canvas) { div.style.zIndex = 1; canvas.focus(); } },  
- 146056: ($0, $1, $2, $3, $4, $5, $6) => { let body = document.getElementsByTagName("body")[0]; let div = document.createElement("DIV"); div.id = "fltk_div" + $0; div.tabIndex = "-1"; div.addEventListener("contextmenu", (e) => e.preventDefault()); div.style.position = "absolute"; div.style.left = $2 + "px"; div.style.top = $1 ? ($3 - 30) + "px" : $3 + "px"; div.style.zIndex = 1; div.style.backgroundColor = "#f1f1f1"; div.style.borderRight = "1px solid #555"; div.style.borderBottom = "1px solid #555"; div.style.textAlign = "center"; body.appendChild(div); let decor = document.createElement("DIV"); decor.id = "fltk_decor" + $0; decor.style.height = "16px"; decor.style.font = "14px Arial"; decor.style.padding = "6px"; decor.style.cursor = "move"; decor.style.zIndex = 2; decor.style.backgroundColor = "#2196F3"; decor.style.color = "#fff"; decor.style.cursor = "pointer"; div.appendChild(decor); let header = document.createElement("DIV"); header.textContent = UTF8ToString($6); header.id = "fltk_decor_header" + $0; header.style.font = "14px Arial"; decor.appendChild(header); let close = document.createElement("BUTTON"); close.id = "closewin"; close.textContent = "X"; close.style.font = "bold 14px Arial"; close.style.position = "absolute"; close.style.top = "1%"; close.style.right = "1px"; close.style.backgroundColor = "#2196F3"; close.style.border = "none"; close.style.color = "#fff"; close.addEventListener("click", () => div.hidden = true); decor.appendChild(close); let canvas = document.createElement("CANVAS"); canvas.id = "fltk_canvas" + $0; canvas.setAttribute("data-raw-handle", $0.toString()); canvas.tabIndex = "-1"; canvas.width = $4; canvas.height = $5; div.appendChild(canvas); canvas.addEventListener("click", () => canvas.focus()); decor.addEventListener("mousedown", () => canvas.focus()); div.addEventListener( "focusin", () => { canvas.focus(); div.style.zIndex = 1; }); div.addEventListener( "focusout", () => { canvas.blur(); div.style.zIndex = 0; }); if ($1 === 0) decor.hidden = true; function dragElement(elmnt) { var pos1 = 0; var pos2 = 0; var pos3 = 0; var pos4 = 0; if (document.getElementById("fltk_decor" + $0)) { document.getElementById("fltk_decor" + $0).onmousedown = dragMouseDown; } else { elmnt.onmousedown = dragMouseDown; } function dragMouseDown(e) { e = e || window.event; e.preventDefault(); pos3 = e.clientX; pos4 = e.clientY; document.onmouseup = closeDragElement; document.onmousemove = elementDrag; } function elementDrag(e) { e = e || window.event; e.preventDefault(); pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY; pos3 = e.clientX; pos4 = e.clientY; elmnt.style.left = (elmnt.offsetLeft - pos1) + "px"; elmnt.style.top = (elmnt.offsetTop - pos2) + "px"; _fltk_em_track_div($0, elmnt.offsetLeft|0, elmnt.offsetTop|0); } function closeDragElement() { document.onmouseup = null; document.onmousemove = null; } } dragElement(document.getElementById("fltk_div" + $0)); },  
- 148947: ($0) => { let div = document.getElementById("fltk_div" + $0); div.hidden = false; },  
- 149023: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = false; div.style.zIndex = 1; } },  
- 149134: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.remove(); } },  
- 149217: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = true; } },  
- 149305: ($0) => { let canvas = document.getElementById("fltk_canvas" + $0); let ctx = canvas.getContext("2d"); return Emval.toHandle(ctx); },  
- 149430: ($0) => { let decor = document.getElementById("fltk_decor" + $0); decor.hidden = !decor.hidden; },  
- 149520: ($0, $1, $2, $3, $4) => { let X = $1; let Y = $2; let W = $3; let H = $4; let canvas = document.getElementById("fltk_canvas" + $0); if (canvas) { canvas.width = W; canvas.height = H; } let div = document.getElementById("fltk_div" + $0); if (div) { div.style.left = X + "px"; div.style.top = Y + "px"; } },  
- 149801: ($0) => { document.body.style.cursor = UTF8ToString($0); },  
- 149852: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)).then( () => { }, () => { }, ); },  
- 149935: ($0, $1) => { let canvas = new OffscreenCanvas($0, $1); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
- 150063: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.translate($1, $2); },  
- 150119: ($0) => { let ctx = Emval.toValue($0); ctx.setTransform(1, 0, 0, 1, 0, 0); }
+  141536: ($0) => { let ctx = Emval.toValue($0); ctx.canvas = null; },  
+ 141588: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.lineWidth = 0; ctx.save(); },  
+ 141667: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.lineWidth = 1; ctx.lineCap = 'butt'; ctx.lineJoin = 'miter'; ctx.setLineDash([ 1, 1 ]); ctx.rect($1, $2, $3, $4); ctx.stroke(); ctx.restore(); },  
+ 141859: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.rect($1, $2, $3, $4); ctx.stroke(); },  
+ 141932: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.fillRect($1 - 0.5, $2 - 0.5, $3, $4); },  
+ 142007: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
+ 142122: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
+ 142237: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.rect($1, $2, $3, $4); ctx.clip(); },  
+ 142320: ($0) => { let ctx = Emval.toValue($0); ctx.save(); ctx.restore(); },  
+ 142380: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 142428: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.lineWidth = $1; ctx.lineCap = UTF8ToString($2); ctx.lineJoin = UTF8ToString($3); ctx.setLineDash(new Float64Array(HEAPF64.buffer, $4, $5)); },  
+ 142605: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
+ 142709: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.stroke(); },  
+ 142833: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1 - 2, $2 - 2); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
+ 142990: ($0, $1, $2) => { let ctx = Emval.toValue($0); let metrics = ctx.measureText(UTF8ToString($1, $2)); return metrics.width; },  
+ 143098: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
+ 143253: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.rotate(-1 * $5 * Math.PI / 180); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
+ 143445: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.transform($1, $2, $3, $4, $5, $6); },  
+ 143517: ($0) => { let ctx = Emval.toValue($0); ctx.resetTransform(); },  
+ 143572: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 143617: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.stroke(); },  
+ 143734: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 143782: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); },  
+ 143885: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 143935: ($0, $1, $2, $3, $4, $5) => { let x = $1; let y = $2; let r = $3; let start = $4; let end = $5; let ctx = Emval.toValue($0); if (start > end) { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180); } else { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180, true); } },  
+ 144198: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 144243: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale((w - 1) / 2.0, (h - 1) / 2.0); },  
+ 144444: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.scale(2.0 / (w - 1), 2.0 / (h - 1)); ctx.translate(-x - w / 2.0 + 0.5, -y - h / 2.0 + 0.5); },  
+ 144647: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 144695: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 144740: ($0, $1, $2, $3, $4) => { let x = $1; let y = $2; let w = $3; let h = $4; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale(w / 2.0, h / 2.0); },  
+ 144903: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 144951: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.stroke(); },  
+ 145055: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
+ 145179: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $4); ctx.stroke(); },  
+ 145323: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.stroke(); },  
+ 145427: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.stroke(); },  
+ 145551: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.lineTo($4, $5); ctx.stroke(); },  
+ 145695: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 145740: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 145790: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 145835: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 145885: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 145930: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 145980: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 146025: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 146075: ($0, $1) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.save(); ctx.scale($1, $1); ctx.translate(0.5, 0.5); },  
+ 146179: ($0, $1) => { let ctx = Emval.toValue($0); ctx.scale($1, $1); },  
+ 146231: ($0) => { let ctx = Emval.toValue($0); ctx.stroke(); ctx.restore(); },  
+ 146293: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
+ 146372: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.fill(); ctx.restore(); },  
+ 146449: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
+ 146617: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
+ 146805: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.fill(); ctx.restore(); },  
+ 146971: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.fill(); ctx.restore(); },  
+ 147157: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); ctx.rect($1 - 0.5, $2 - 0.5, 1, 1); ctx.fill(); },  
+ 147258: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
+ 147311: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
+ 147364: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9) => { let ctx = Emval.toValue($0); if ($1) { ctx.moveTo($2, $3); } else { ctx.lineTo($2, $3); } ctx.bezierCurveTo($4, $5, $6, $7, $8, $9); },  
+ 147501: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
+ 147554: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
+ 147607: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
+ 147660: () => { let has_api = false; if ("queryLocalFonts" in window) { navigator.permissions.query({ name: "local-fonts" }).then((result) => { if (result.state === "granted" || result.state === "prompt") { has_api = true; }}); } return has_api; },  
+ 147894: () => { let canvas = new OffscreenCanvas(100, 100); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
+ 148024: ($0, $1) => { let ctx = Emval.toValue($0); ctx.font = UTF8ToString($1); },  
+ 148086: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) => { let ctx = Emval.toValue($0); let idata = new ImageData(new Uint8ClampedArray(HEAPF64.buffer, $1, $2), $3, $4); ctx.save(); ctx.rect($5, $6, $9, $10); ctx.clip(); ctx.putImageData(idata, $5, $6, $7, $8, $9, $10); ctx.restore(); },  
+ 148317: ($0, $1, $2, $3, $4, $5, $6, $7) => { let ctxt = Emval.toValue($0); let ctx = Emval.toValue($1); let cvs = ctx.canvas; ctxt.drawImage(cvs, $6, $7, $4, $5, $2, $3, $4, $5); },  
+ 148455: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2); ctx.save(); },  
+ 148535: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.restore(); },  
+ 148598: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.style.zIndex = 0; } },  
+ 148689: ($0) => { let div = document.getElementById("fltk_div" + $0); let canvas = document.getElementById("fltk_canvas" + $0); if (div && canvas) { div.style.zIndex = 1; canvas.focus(); } },  
+ 148864: ($0, $1, $2, $3, $4, $5, $6) => { let body = document.getElementsByTagName("body")[0]; let div = document.createElement("DIV"); div.id = "fltk_div" + $0; div.tabIndex = "-1"; div.addEventListener("contextmenu", (e) => e.preventDefault()); div.style.position = "absolute"; div.style.left = $2 + "px"; div.style.top = $1 ? ($3 - 30) + "px" : $3 + "px"; div.style.zIndex = 1; div.style.backgroundColor = "#f1f1f1"; div.style.borderRight = "1px solid #555"; div.style.borderBottom = "1px solid #555"; div.style.textAlign = "center"; body.appendChild(div); let decor = document.createElement("DIV"); decor.id = "fltk_decor" + $0; decor.style.height = "16px"; decor.style.font = "14px Arial"; decor.style.padding = "6px"; decor.style.cursor = "move"; decor.style.zIndex = 2; decor.style.backgroundColor = "#2196F3"; decor.style.color = "#fff"; decor.style.cursor = "pointer"; div.appendChild(decor); let header = document.createElement("DIV"); header.textContent = UTF8ToString($6); header.id = "fltk_decor_header" + $0; header.style.font = "14px Arial"; decor.appendChild(header); let close = document.createElement("BUTTON"); close.id = "closewin"; close.textContent = "X"; close.style.font = "bold 14px Arial"; close.style.position = "absolute"; close.style.top = "1%"; close.style.right = "1px"; close.style.backgroundColor = "#2196F3"; close.style.border = "none"; close.style.color = "#fff"; close.addEventListener("click", () => div.hidden = true); decor.appendChild(close); let canvas = document.createElement("CANVAS"); canvas.id = "fltk_canvas" + $0; canvas.setAttribute("data-raw-handle", $0.toString()); canvas.tabIndex = "-1"; canvas.width = $4; canvas.height = $5; div.appendChild(canvas); canvas.addEventListener("click", () => canvas.focus()); decor.addEventListener("mousedown", () => canvas.focus()); div.addEventListener( "focusin", () => { canvas.focus(); div.style.zIndex = 1; }); div.addEventListener( "focusout", () => { canvas.blur(); div.style.zIndex = 0; }); if ($1 === 0) decor.hidden = true; function dragElement(elmnt) { var pos1 = 0; var pos2 = 0; var pos3 = 0; var pos4 = 0; if (document.getElementById("fltk_decor" + $0)) { document.getElementById("fltk_decor" + $0).onmousedown = dragMouseDown; } else { elmnt.onmousedown = dragMouseDown; } function dragMouseDown(e) { e = e || window.event; e.preventDefault(); pos3 = e.clientX; pos4 = e.clientY; document.onmouseup = closeDragElement; document.onmousemove = elementDrag; } function elementDrag(e) { e = e || window.event; e.preventDefault(); pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY; pos3 = e.clientX; pos4 = e.clientY; elmnt.style.left = (elmnt.offsetLeft - pos1) + "px"; elmnt.style.top = (elmnt.offsetTop - pos2) + "px"; _fltk_em_track_div($0, elmnt.offsetLeft|0, elmnt.offsetTop|0); } function closeDragElement() { document.onmouseup = null; document.onmousemove = null; } } dragElement(document.getElementById("fltk_div" + $0)); },  
+ 151755: ($0) => { let div = document.getElementById("fltk_div" + $0); div.hidden = false; },  
+ 151831: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = false; div.style.zIndex = 1; } },  
+ 151942: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.remove(); } },  
+ 152025: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = true; } },  
+ 152113: ($0) => { let canvas = document.getElementById("fltk_canvas" + $0); let ctx = canvas.getContext("2d"); return Emval.toHandle(ctx); },  
+ 152238: ($0) => { let decor = document.getElementById("fltk_decor" + $0); decor.hidden = !decor.hidden; },  
+ 152328: ($0, $1, $2, $3, $4) => { let X = $1; let Y = $2; let W = $3; let H = $4; let canvas = document.getElementById("fltk_canvas" + $0); if (canvas) { canvas.width = W; canvas.height = H; } let div = document.getElementById("fltk_div" + $0); if (div) { div.style.left = X + "px"; div.style.top = Y + "px"; } },  
+ 152609: ($0) => { document.body.style.cursor = UTF8ToString($0); },  
+ 152660: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)).then( () => { }, () => { }, ); },  
+ 152743: ($0, $1) => { let canvas = new OffscreenCanvas($0, $1); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
+ 152871: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.translate($1, $2); },  
+ 152927: ($0) => { let ctx = Emval.toValue($0); ctx.setTransform(1, 0, 0, 1, 0, 0); },  
+ 152996: () => { return (typeof navigator !== 'undefined' && navigator.gpu) ? 1 : 0; }
 };
 function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async () => { const itemList = await navigator.clipboard.read(); let imageType; const item = itemList.find(item => item.types.some(type => type.startsWith('image/'))); if (item) { const imageBlob = await item.getType(imageType = item.types.find(type => type.startsWith('image/'))); const imageBitmap = await createImageBitmap(imageBlob); const canvas = new OffscreenCanvas(imageBitmap.width, imageBitmap.height); const context = canvas.getContext('2d'); context.drawImage(imageBitmap, 0, 0); const imageData = context.getImageData(0, 0, canvas.width, canvas.height); return imageData; } else { return null; } }); }
 
@@ -5454,6 +5455,8 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
 
   var _emscripten_date_now = () => Date.now();
 
+  var _emscripten_has_asyncify = () => 1;
+
   var getHeapMax = () =>
       // Stay one Wasm page short of 4GB: while e.g. Chrome is able to allocate
       // full 4GB Wasm memories, the size will wrap back to 0 bytes in Wasm side
@@ -6624,6 +6627,9 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
   
   
   
+  
+  
+  
   var stackAlloc = (sz) => __emscripten_stack_alloc(sz);
   var stringToUTF8OnStack = (str) => {
       var size = lengthBytesUTF8(str) + 1;
@@ -7311,8 +7317,245 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
   WGSLLanguageFeatureName:[,"readonly_and_readwrite_storage_textures","packed_4x8_integer_dot_product","unrestricted_pointer_parameters","pointer_composite_access","uniform_buffer_standard_layout","subgroup_id","texture_and_sampler_let","subgroup_uniformity","texture_formats_tier1","linear_indexing","immediate_address_space","buffer_view","swizzle_assignment","fragment_depth"],
   };
   
+  var emwgpuStringToInt_DeviceLostReason = {
+              'undefined': 1,  // For older browsers
+              'unknown': 1,
+              'destroyed': 2,
+          };
+  
+  
+  
+  
+  function _emwgpuAdapterRequestDevice(adapterPtr,futureId_low, futureId_high,deviceLostFutureId_low, deviceLostFutureId_high,devicePtr,queuePtr,descriptor) {
+    var futureId = convertI32PairToI53Checked(futureId_low, futureId_high);
+    var deviceLostFutureId = convertI32PairToI53Checked(deviceLostFutureId_low, deviceLostFutureId_high);
+  
+    
+      var adapter = WebGPU.getJsObject(adapterPtr);
+  
+      var desc = {};
+      if (descriptor) {
+        assert(descriptor);assert(HEAPU32[((descriptor)>>2)] === 0);
+        var requiredFeatureCount = HEAPU32[(((descriptor)+(12))>>2)];
+        if (requiredFeatureCount) {
+          var requiredFeaturesPtr = HEAPU32[(((descriptor)+(16))>>2)];
+          // requiredFeaturesPtr is a pointer to an array of FeatureName which is an enum of size uint32_t
+          desc["requiredFeatures"] = Array.from(HEAPU32.subarray((((requiredFeaturesPtr)>>2)), ((requiredFeaturesPtr + requiredFeatureCount * 4)>>2)),
+            (feature) => WebGPU.FeatureName[feature]);
+        }
+        var limitsPtr = HEAPU32[(((descriptor)+(20))>>2)];
+        if (limitsPtr) {
+          assert(limitsPtr);
+          var nextInChainPtr = HEAPU32[((limitsPtr)>>2)];
+          var requiredLimits = {};
+          function setLimitU32IfDefined(name, basePtr, limitOffset, ignoreIfZero = false) {
+            var ptr = basePtr + limitOffset;
+            var value = HEAPU32[((ptr)>>2)];
+            if (value != 4294967295 && (!ignoreIfZero || value != 0)) {
+              requiredLimits[name] = value;
+            }
+          }
+          function setLimitU64IfDefined(name, basePtr, limitOffset) {
+            var ptr = basePtr + limitOffset;
+            // Handle WGPU_LIMIT_U64_UNDEFINED.
+            var limitPart1 = HEAPU32[((ptr)>>2)];
+            var limitPart2 = HEAPU32[(((ptr)+(4))>>2)];
+            if (limitPart1 != 0xFFFFFFFF || limitPart2 != 0xFFFFFFFF) {
+              requiredLimits[name] = readI53FromI64(ptr);
+            }
+          }
+  
+          setLimitU32IfDefined("maxTextureDimension1D",                     limitsPtr, 4);
+          setLimitU32IfDefined("maxTextureDimension2D",                     limitsPtr, 8);
+          setLimitU32IfDefined("maxTextureDimension3D",                     limitsPtr, 12);
+          setLimitU32IfDefined("maxTextureArrayLayers",                     limitsPtr, 16);
+          setLimitU32IfDefined("maxBindGroups",                             limitsPtr, 20);
+          setLimitU32IfDefined('maxBindGroupsPlusVertexBuffers',            limitsPtr, 24);
+          setLimitU32IfDefined('maxBindingsPerBindGroup',                   limitsPtr, 28);
+          setLimitU32IfDefined("maxDynamicUniformBuffersPerPipelineLayout", limitsPtr, 32);
+          setLimitU32IfDefined("maxDynamicStorageBuffersPerPipelineLayout", limitsPtr, 36);
+          setLimitU32IfDefined("maxSampledTexturesPerShaderStage",          limitsPtr, 40);
+          setLimitU32IfDefined("maxSamplersPerShaderStage",                 limitsPtr, 44);
+          setLimitU32IfDefined("maxStorageBuffersPerShaderStage",           limitsPtr, 48);
+          setLimitU32IfDefined("maxStorageTexturesPerShaderStage",          limitsPtr, 52);
+          setLimitU32IfDefined("maxUniformBuffersPerShaderStage",           limitsPtr, 56);
+          setLimitU32IfDefined("minUniformBufferOffsetAlignment",           limitsPtr, 80);
+          setLimitU32IfDefined("minStorageBufferOffsetAlignment",           limitsPtr, 84);
+          setLimitU64IfDefined("maxUniformBufferBindingSize",               limitsPtr, 64);
+          setLimitU64IfDefined("maxStorageBufferBindingSize",               limitsPtr, 72);
+          setLimitU32IfDefined("maxVertexBuffers",                          limitsPtr, 88);
+          setLimitU64IfDefined("maxBufferSize",                             limitsPtr, 96);
+          setLimitU32IfDefined("maxVertexAttributes",                       limitsPtr, 104);
+          setLimitU32IfDefined("maxVertexBufferArrayStride",                limitsPtr, 108);
+          setLimitU32IfDefined("maxInterStageShaderVariables",              limitsPtr, 112);
+          setLimitU32IfDefined("maxColorAttachments",                       limitsPtr, 116);
+          setLimitU32IfDefined("maxColorAttachmentBytesPerSample",          limitsPtr, 120);
+          setLimitU32IfDefined("maxComputeWorkgroupStorageSize",            limitsPtr, 124);
+          setLimitU32IfDefined("maxComputeInvocationsPerWorkgroup",         limitsPtr, 128);
+          setLimitU32IfDefined("maxComputeWorkgroupSizeX",                  limitsPtr, 132);
+          setLimitU32IfDefined("maxComputeWorkgroupSizeY",                  limitsPtr, 136);
+          setLimitU32IfDefined("maxComputeWorkgroupSizeZ",                  limitsPtr, 140);
+          setLimitU32IfDefined("maxComputeWorkgroupsPerDimension",          limitsPtr, 144);
+          // Not present in all browsers. If the app requested 0, avoid passing it through so it won't cause an error.
+          setLimitU32IfDefined("maxImmediateSize",                          limitsPtr, 148, true);
+  
+          if (nextInChainPtr !== 0) {
+            var sType = HEAP32[(((nextInChainPtr)+(4))>>2)];
+            assert(sType === 15);
+            assert(0 === HEAPU32[((nextInChainPtr)>>2)]);
+            var compatibilityModeLimitsPtr = nextInChainPtr;
+            assert(compatibilityModeLimitsPtr);assert(HEAPU32[((compatibilityModeLimitsPtr)>>2)] === 0);
+            // If not present in the browser, don't request these, otherwise they'll cause an error.
+            // (Technically, if any of these is higher than the PerShaderStage equivalent, we should
+            // raise the PerShaderStage limit instead, but that's complex and apps should be able to
+            // deal with that themselves.)
+            if ('maxStorageBuffersInVertexStage' in GPUSupportedLimits.prototype) {
+              setLimitU32IfDefined('maxStorageBuffersInVertexStage',    compatibilityModeLimitsPtr, 8);
+              setLimitU32IfDefined('maxStorageTexturesInVertexStage',   compatibilityModeLimitsPtr, 12);
+              setLimitU32IfDefined('maxStorageBuffersInFragmentStage',  compatibilityModeLimitsPtr, 16);
+              setLimitU32IfDefined('maxStorageTexturesInFragmentStage', compatibilityModeLimitsPtr, 20);
+            }
+          }
+  
+          desc["requiredLimits"] = requiredLimits;
+        }
+  
+        var defaultQueuePtr = HEAPU32[(((descriptor)+(24))>>2)];
+        if (defaultQueuePtr) {
+          var defaultQueueDesc = {
+            "label": WebGPU.makeStringFromOptionalStringView(
+              defaultQueuePtr + 4),
+          };
+          desc["defaultQueue"] = defaultQueueDesc;
+        }
+        desc["label"] = WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4
+        );
+      }
+  
+       // requestDevice
+      WebGPU.Internals.futureInsert(futureId, adapter.requestDevice(desc).then((device) => {
+         // requestDevice fulfilled
+        callUserCallback(() => {
+          WebGPU.Internals.jsObjectInsert(queuePtr, device.queue);
+          WebGPU.Internals.jsObjectInsert(devicePtr, device);
+  
+          
+  
+          // Set up device lost promise resolution.
+          assert(deviceLostFutureId);
+          // Don't keepalive here, because this isn't guaranteed to ever happen.
+          WebGPU.Internals.futureInsert(deviceLostFutureId, device.lost.then((info) => {
+            // If the runtime has exited, avoid calling callUserCallback as it
+            // will print an error (e.g. if the device got freed during shutdown).
+            callUserCallback(() => {
+              // Unset the uncaptured error handler.
+              device.onuncapturederror = (ev) => {};
+              var sp = stackSave();
+              var messagePtr = stringToUTF8OnStack(info.message);
+              _emwgpuOnDeviceLostCompleted(deviceLostFutureId, emwgpuStringToInt_DeviceLostReason[info.reason],
+                messagePtr);
+              stackRestore(sp);
+            });
+          }));
+  
+          // Set up uncaptured error handlers.
+          assert(typeof GPUValidationError != 'undefined');
+          assert(typeof GPUOutOfMemoryError != 'undefined');
+          assert(typeof GPUInternalError != 'undefined');
+          device.onuncapturederror = (ev) => {
+              var type = 5;
+              if (ev.error instanceof GPUValidationError) type = 2;
+              else if (ev.error instanceof GPUOutOfMemoryError) type = 3;
+              else if (ev.error instanceof GPUInternalError) type = 4;
+              var sp = stackSave();
+              var messagePtr = stringToUTF8OnStack(ev.error.message);
+              _emwgpuOnUncapturedError(devicePtr, type, messagePtr);
+              stackRestore(sp);
+          };
+  
+          _emwgpuOnRequestDeviceCompleted(futureId, 1,
+            devicePtr, 0);
+        });
+      }, (ex) => {
+         // requestDevice rejected
+        callUserCallback(() => {
+          var sp = stackSave();
+          var messagePtr = stringToUTF8OnStack(ex.message);
+          _emwgpuOnRequestDeviceCompleted(futureId, 3,
+            devicePtr, messagePtr);
+          if (deviceLostFutureId) {
+            _emwgpuOnDeviceLostCompleted(deviceLostFutureId, 4,
+              messagePtr);
+          }
+          stackRestore(sp);
+        });
+      }));
+    ;
+  }
+
+  
   var _emwgpuDelete = (ptr) => {
       delete WebGPU.Internals.jsObjects[ptr];
+    };
+
+  
+  var _emwgpuDeviceCreateBuffer = (devicePtr, descriptor, bufferPtr) => {
+      assert(descriptor);assert(HEAPU32[((descriptor)>>2)] === 0);
+  
+      var mappedAtCreation = !!(HEAPU32[(((descriptor)+(32))>>2)]);
+  
+      var desc = {
+        "label": WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4),
+        "usage": HEAPU32[(((descriptor)+(16))>>2)],
+        "size": readI53FromI64((descriptor)+(24)),
+        "mappedAtCreation": mappedAtCreation,
+      };
+  
+      var device = WebGPU.getJsObject(devicePtr);
+      var buffer;
+      try {
+        buffer = device.createBuffer(desc);
+      } catch (ex) {
+        // The only exception should be RangeError if mapping at creation ran out of memory.
+        assert(ex instanceof RangeError);
+        assert(mappedAtCreation);
+        err('createBuffer threw:', ex);
+        return false;
+      }
+      WebGPU.Internals.jsObjectInsert(bufferPtr, buffer);
+      if (mappedAtCreation) {
+        WebGPU.Internals.bufferOnUnmaps[bufferPtr] = [];
+      }
+      return true;
+    };
+
+  
+  var _emwgpuDeviceCreateShaderModule = (devicePtr, descriptor, shaderModulePtr) => {
+      assert(descriptor);
+      var nextInChainPtr = HEAPU32[((descriptor)>>2)];
+      assert(nextInChainPtr !== 0);
+      var sType = HEAP32[(((nextInChainPtr)+(4))>>2)];
+  
+      var desc = {
+        "label": WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4),
+        "code": "",
+      };
+  
+      switch (sType) {
+        case 2: {
+          desc["code"] = WebGPU.makeStringFromStringView(
+            nextInChainPtr + 8
+          );
+          break;
+        }
+        default: abort('unrecognized ShaderModule sType');
+      }
+  
+      var device = WebGPU.getJsObject(devicePtr);
+      WebGPU.Internals.jsObjectInsert(shaderModulePtr, device.createShaderModule(desc));
     };
 
   
@@ -7322,6 +7565,85 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
       device.onuncapturederror = null;
       device.destroy()
     };
+
+  
+  var emwgpuStringToInt_PreferredFormat = {
+              'rgba8unorm': 22,
+              'bgra8unorm': 27,
+          };
+  
+  
+  var _emwgpuGetPreferredFormat = () => {
+      var format = navigator.gpu.getPreferredCanvasFormat();
+      return emwgpuStringToInt_PreferredFormat[format];
+    };
+
+  
+  
+  
+  
+  function _emwgpuInstanceRequestAdapter(instancePtr,futureId_low, futureId_high,options,adapterPtr) {
+    var futureId = convertI32PairToI53Checked(futureId_low, futureId_high);
+  
+    
+      var opts;
+      if (options) {
+        assert(options);
+        opts = {
+          "featureLevel": WebGPU.FeatureLevel[HEAP32[(((options)+(4))>>2)]],
+          "powerPreference": WebGPU.PowerPreference[HEAP32[(((options)+(8))>>2)]],
+          "forceFallbackAdapter":
+            !!(HEAPU32[(((options)+(12))>>2)]),
+        };
+  
+        var nextInChainPtr = HEAPU32[((options)>>2)];
+        if (nextInChainPtr !== 0) {
+          var sType = HEAP32[(((nextInChainPtr)+(4))>>2)];
+          assert(sType === 11);
+          assert(0 === HEAPU32[((nextInChainPtr)>>2)]);
+          var webxrOptions = nextInChainPtr;
+          assert(webxrOptions);assert(HEAPU32[((webxrOptions)>>2)] === 0);
+          opts.xrCompatible = !!(HEAPU32[(((webxrOptions)+(8))>>2)]);
+        }
+      }
+  
+      if (!('gpu' in navigator)) {
+        var sp = stackSave();
+        var messagePtr = stringToUTF8OnStack('WebGPU not available on this browser (navigator.gpu is not available)');
+        _emwgpuOnRequestAdapterCompleted(futureId, 3,
+          adapterPtr, messagePtr);
+        stackRestore(sp);
+        return;
+      }
+  
+       // requestAdapter
+      WebGPU.Internals.futureInsert(futureId, navigator.gpu.requestAdapter(opts).then((adapter) => {
+         // requestAdapter fulfilled
+        callUserCallback(() => {
+          if (adapter) {
+            WebGPU.Internals.jsObjectInsert(adapterPtr, adapter);
+            _emwgpuOnRequestAdapterCompleted(futureId, 1,
+              adapterPtr, 0);
+          } else {
+            var sp = stackSave();
+            var messagePtr = stringToUTF8OnStack('WebGPU not available on this browser (requestAdapter returned null)');
+            _emwgpuOnRequestAdapterCompleted(futureId, 3,
+              adapterPtr, messagePtr);
+            stackRestore(sp);
+          }
+        });
+      }, (ex) => {
+         // requestAdapter rejected
+        callUserCallback(() => {
+          var sp = stackSave();
+          var messagePtr = stringToUTF8OnStack(ex.message);
+          _emwgpuOnRequestAdapterCompleted(futureId, 4,
+            adapterPtr, messagePtr);
+          stackRestore(sp);
+        });
+      }));
+    ;
+  }
 
 
   function _fd_close(fd) {
@@ -7525,6 +7847,590 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
     };
 
   
+  
+  var _wgpuDeviceCreateBindGroup = (devicePtr, descriptor) => {
+      assert(descriptor);assert(HEAPU32[((descriptor)>>2)] === 0);
+  
+      function makeEntry(entryPtr) {
+        assert(entryPtr);
+  
+        var bufferPtr = HEAPU32[(((entryPtr)+(8))>>2)];
+        var samplerPtr = HEAPU32[(((entryPtr)+(32))>>2)];
+        var textureViewPtr = HEAPU32[(((entryPtr)+(36))>>2)];
+        var externalTexturePtr = 0;
+        WebGPU.iterateExtensions(entryPtr, {
+          14: (ptr) => {
+            externalTexturePtr = HEAPU32[(((ptr)+(8))>>2)];
+          },
+        });
+        assert((bufferPtr !== 0) + (samplerPtr !== 0) + (textureViewPtr !== 0) + (externalTexturePtr !== 0) === 1);
+  
+        var resource;
+        if (bufferPtr) {
+          // Note the sentinel UINT64_MAX will be read as -1.
+          var size = readI53FromI64((entryPtr)+(24));
+          if (size == -1) size = undefined;
+  
+          resource = {
+            "buffer": WebGPU.getJsObject(bufferPtr),
+            "offset": readI53FromI64((entryPtr)+(16)),
+            "size": size,
+          };
+        } else {
+          resource = WebGPU.getJsObject(samplerPtr || textureViewPtr || externalTexturePtr);
+        }
+        return {
+          "binding": HEAPU32[(((entryPtr)+(4))>>2)],
+          "resource": resource,
+        };
+      }
+  
+      function makeEntries(count, entriesPtrs) {
+        var entries = [];
+        for (var i = 0; i < count; ++i) {
+          entries.push(makeEntry(entriesPtrs +
+              40 * i));
+        }
+        return entries;
+      }
+  
+      var desc = {
+        "label": WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4),
+        "layout": WebGPU.getJsObject(
+          HEAPU32[(((descriptor)+(12))>>2)]),
+        "entries": makeEntries(
+          HEAPU32[(((descriptor)+(16))>>2)],
+          HEAPU32[(((descriptor)+(20))>>2)]
+        ),
+      };
+  
+      var device = WebGPU.getJsObject(devicePtr);
+      var ptr = _emwgpuCreateBindGroup(0);
+      WebGPU.Internals.jsObjectInsert(ptr, device.createBindGroup(desc));
+      return ptr;
+    };
+
+  
+  
+  var _wgpuDeviceCreateBindGroupLayout = (devicePtr, descriptor) => {
+      assert(descriptor);assert(HEAPU32[((descriptor)>>2)] === 0);
+  
+      function makeBufferEntry(substructPtr) {
+        var typeInt =
+          HEAPU32[(((substructPtr)+(4))>>2)];
+        if (!typeInt) return undefined;
+  
+        return {
+          "type": WebGPU.BufferBindingType[typeInt],
+          "hasDynamicOffset":
+            !!(HEAPU32[(((substructPtr)+(8))>>2)]),
+          "minBindingSize":
+            readI53FromI64((substructPtr)+(16)),
+        };
+      }
+  
+      function makeSamplerEntry(substructPtr) {
+        var typeInt =
+          HEAPU32[(((substructPtr)+(4))>>2)];
+        if (!typeInt) return undefined;
+  
+        return {
+          "type": WebGPU.SamplerBindingType[typeInt],
+        };
+      }
+  
+      function makeTextureEntry(substructPtr) {
+        var sampleTypeInt =
+          HEAPU32[(((substructPtr)+(4))>>2)];
+        if (!sampleTypeInt) return undefined;
+  
+        return {
+          "sampleType": WebGPU.TextureSampleType[sampleTypeInt],
+          "viewDimension": WebGPU.TextureViewDimension[HEAP32[(((substructPtr)+(8))>>2)]],
+          "multisampled":
+            !!(HEAPU32[(((substructPtr)+(12))>>2)]),
+        };
+      }
+  
+      function makeStorageTextureEntry(substructPtr) {
+        var accessInt =
+          HEAPU32[(((substructPtr)+(4))>>2)]
+        if (!accessInt) return undefined;
+  
+        return {
+          "access": WebGPU.StorageTextureAccess[accessInt],
+          "format": WebGPU.TextureFormat[HEAP32[(((substructPtr)+(8))>>2)]],
+          "viewDimension": WebGPU.TextureViewDimension[HEAP32[(((substructPtr)+(12))>>2)]],
+        };
+      }
+  
+      function makeEntry(entryPtr) {
+        assert(entryPtr);
+        // bindingArraySize is not specced and thus not implemented yet. We don't pass it through
+        // because if we did, then existing apps using this version of the bindings could break when
+        // browsers start accepting bindingArraySize.
+        var bindingArraySize = HEAPU32[(((entryPtr)+(16))>>2)];
+        assert(bindingArraySize == 0 || bindingArraySize == 1);
+  
+        var entry = {
+          "binding":
+            HEAPU32[(((entryPtr)+(4))>>2)],
+          "visibility":
+            HEAPU32[(((entryPtr)+(8))>>2)],
+          "buffer": makeBufferEntry(entryPtr + 24),
+          "sampler": makeSamplerEntry(entryPtr + 48),
+          "texture": makeTextureEntry(entryPtr + 56),
+          "storageTexture": makeStorageTextureEntry(entryPtr + 72),
+        };
+        WebGPU.iterateExtensions(entryPtr, {
+          13: (ptr) => {
+            entry["externalTexture"] = {};
+          },
+        });
+        return entry;
+      }
+  
+      function makeEntries(count, entriesPtrs) {
+        var entries = [];
+        for (var i = 0; i < count; ++i) {
+          entries.push(makeEntry(entriesPtrs +
+              88 * i));
+        }
+        return entries;
+      }
+  
+      var desc = {
+        "label": WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4),
+        "entries": makeEntries(
+          HEAPU32[(((descriptor)+(12))>>2)],
+          HEAPU32[(((descriptor)+(16))>>2)]
+        ),
+      };
+  
+      var device = WebGPU.getJsObject(devicePtr);
+      var ptr = _emwgpuCreateBindGroupLayout(0);
+      WebGPU.Internals.jsObjectInsert(ptr, device.createBindGroupLayout(desc));
+      return ptr;
+    };
+
+  
+  
+  var _wgpuDeviceCreateCommandEncoder = (devicePtr, descriptor) => {
+      var desc;
+      if (descriptor) {
+        assert(descriptor);assert(HEAPU32[((descriptor)>>2)] === 0);
+        desc = {
+          "label": WebGPU.makeStringFromOptionalStringView(
+            descriptor + 4),
+        };
+      }
+      var device = WebGPU.getJsObject(devicePtr);
+      var ptr = _emwgpuCreateCommandEncoder(0);
+      WebGPU.Internals.jsObjectInsert(ptr, device.createCommandEncoder(desc));
+      return ptr;
+    };
+
+  
+  
+  var _wgpuDeviceCreatePipelineLayout = (devicePtr, descriptor) => {
+      assert(descriptor);assert(HEAPU32[((descriptor)>>2)] === 0);
+      var bglCount = HEAPU32[(((descriptor)+(12))>>2)];
+      var bglPtr = HEAPU32[(((descriptor)+(16))>>2)];
+      var bgls = [];
+      for (var i = 0; i < bglCount; ++i) {
+        bgls.push(WebGPU.getJsObject(
+          HEAPU32[(((bglPtr)+(4 * i))>>2)]));
+      }
+      var desc = {
+        "label": WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4),
+        "bindGroupLayouts": bgls,
+        "immediateSize": HEAPU32[(((descriptor)+(20))>>2)],
+      };
+  
+      var device = WebGPU.getJsObject(devicePtr);
+      var ptr = _emwgpuCreatePipelineLayout(0);
+      WebGPU.Internals.jsObjectInsert(ptr, device.createPipelineLayout(desc));
+      return ptr;
+    };
+
+  
+  
+  var _wgpuDeviceCreateRenderPipeline = (devicePtr, descriptor) => {
+      var desc = WebGPU.makeRenderPipelineDesc(descriptor);
+      var device = WebGPU.getJsObject(devicePtr);
+      var ptr = _emwgpuCreateRenderPipeline(0);
+      WebGPU.Internals.jsObjectInsert(ptr, device.createRenderPipeline(desc));
+      return ptr;
+    };
+
+  
+  
+  var _wgpuDeviceCreateTexture = (devicePtr, descriptor) => {
+      assert(descriptor);
+      var nextInChainPtr = HEAPU32[((descriptor)>>2)];
+  
+      var textureBindingViewDimension;
+      if (nextInChainPtr !== 0) {
+        var sType = HEAP32[(((nextInChainPtr)+(4))>>2)];
+        assert(sType === 16);
+        assert(0 === HEAPU32[((nextInChainPtr)>>2)]);
+        var textureBindingViewDimensionDescriptor = nextInChainPtr;
+        assert(textureBindingViewDimensionDescriptor);assert(HEAPU32[((textureBindingViewDimensionDescriptor)>>2)] === 0);
+        textureBindingViewDimension = WebGPU.TextureViewDimension[HEAP32[(((textureBindingViewDimensionDescriptor)+(8))>>2)]];
+      }
+  
+      var desc = {
+        "label": WebGPU.makeStringFromOptionalStringView(
+          descriptor + 4),
+        "size": WebGPU.makeExtent3D(descriptor + 28),
+        "mipLevelCount": HEAPU32[(((descriptor)+(44))>>2)],
+        "sampleCount": HEAPU32[(((descriptor)+(48))>>2)],
+        "dimension": WebGPU.TextureDimension[HEAP32[(((descriptor)+(24))>>2)]],
+        "format": WebGPU.TextureFormat[HEAP32[(((descriptor)+(40))>>2)]],
+        "usage": HEAPU32[(((descriptor)+(16))>>2)],
+        "textureBindingViewDimension": textureBindingViewDimension,
+      };
+  
+      var viewFormatCount = HEAPU32[(((descriptor)+(52))>>2)];
+      if (viewFormatCount) {
+        var viewFormatsPtr = HEAPU32[(((descriptor)+(56))>>2)];
+        // viewFormatsPtr pointer to an array of TextureFormat which is an enum of size uint32_t
+        desc['viewFormats'] = Array.from(HEAP32.subarray((((viewFormatsPtr)>>2)), ((viewFormatsPtr + viewFormatCount * 4)>>2)),
+          format => WebGPU.TextureFormat[format]);
+      }
+  
+      var device = WebGPU.getJsObject(devicePtr);
+      var ptr = _emwgpuCreateTexture(0);
+      WebGPU.Internals.jsObjectInsert(ptr, device.createTexture(desc));
+      return ptr;
+    };
+
+  var GLctx;
+  
+  var webgl_enable_ANGLE_instanced_arrays = (ctx) => {
+      // Extension available in WebGL 1 from Firefox 26 and Google Chrome 30 onwards. Core feature in WebGL 2.
+      var ext = ctx.getExtension('ANGLE_instanced_arrays');
+      // Because this extension is a core function in WebGL 2, assign the extension entry points in place of
+      // where the core functions will reside in WebGL 2. This way the calling code can call these without
+      // having to dynamically branch depending if running against WebGL 1 or WebGL 2.
+      if (ext) {
+        ctx['vertexAttribDivisor'] = (index, divisor) => ext['vertexAttribDivisorANGLE'](index, divisor);
+        ctx['drawArraysInstanced'] = (mode, first, count, primcount) => ext['drawArraysInstancedANGLE'](mode, first, count, primcount);
+        ctx['drawElementsInstanced'] = (mode, count, type, indices, primcount) => ext['drawElementsInstancedANGLE'](mode, count, type, indices, primcount);
+        return 1;
+      }
+    };
+  
+  var webgl_enable_OES_vertex_array_object = (ctx) => {
+      // Extension available in WebGL 1 from Firefox 25 and WebKit 536.28/desktop Safari 6.0.3 onwards. Core feature in WebGL 2.
+      var ext = ctx.getExtension('OES_vertex_array_object');
+      if (ext) {
+        ctx['createVertexArray'] = () => ext['createVertexArrayOES']();
+        ctx['deleteVertexArray'] = (vao) => ext['deleteVertexArrayOES'](vao);
+        ctx['bindVertexArray'] = (vao) => ext['bindVertexArrayOES'](vao);
+        ctx['isVertexArray'] = (vao) => ext['isVertexArrayOES'](vao);
+        return 1;
+      }
+    };
+  
+  var webgl_enable_WEBGL_draw_buffers = (ctx) => {
+      // Extension available in WebGL 1 from Firefox 28 onwards. Core feature in WebGL 2.
+      var ext = ctx.getExtension('WEBGL_draw_buffers');
+      if (ext) {
+        ctx['drawBuffers'] = (n, bufs) => ext['drawBuffersWEBGL'](n, bufs);
+        return 1;
+      }
+    };
+  
+  var webgl_enable_EXT_polygon_offset_clamp = (ctx) => {
+      return !!(ctx.extPolygonOffsetClamp = ctx.getExtension('EXT_polygon_offset_clamp'));
+    };
+  
+  var webgl_enable_EXT_clip_control = (ctx) => {
+      return !!(ctx.extClipControl = ctx.getExtension('EXT_clip_control'));
+    };
+  
+  var webgl_enable_WEBGL_polygon_mode = (ctx) => {
+      return !!(ctx.webglPolygonMode = ctx.getExtension('WEBGL_polygon_mode'));
+    };
+  
+  var webgl_enable_WEBGL_multi_draw = (ctx) => {
+      // Closure is expected to be allowed to minify the '.multiDrawWebgl' property, so not accessing it quoted.
+      return !!(ctx.multiDrawWebgl = ctx.getExtension('WEBGL_multi_draw'));
+    };
+  
+  var getEmscriptenSupportedExtensions = (ctx) => {
+      // Restrict the list of advertised extensions to those that we actually
+      // support.
+      var supportedExtensions = [
+        // WebGL 1 extensions
+        'ANGLE_instanced_arrays',
+        'EXT_blend_minmax',
+        'EXT_disjoint_timer_query',
+        'EXT_frag_depth',
+        'EXT_shader_texture_lod',
+        'EXT_sRGB',
+        'OES_element_index_uint',
+        'OES_fbo_render_mipmap',
+        'OES_standard_derivatives',
+        'OES_texture_float',
+        'OES_texture_half_float',
+        'OES_texture_half_float_linear',
+        'OES_vertex_array_object',
+        'WEBGL_color_buffer_float',
+        'WEBGL_depth_texture',
+        'WEBGL_draw_buffers',
+        // WebGL 1 and WebGL 2 extensions
+        'EXT_clip_control',
+        'EXT_color_buffer_half_float',
+        'EXT_depth_clamp',
+        'EXT_float_blend',
+        'EXT_polygon_offset_clamp',
+        'EXT_texture_compression_bptc',
+        'EXT_texture_compression_rgtc',
+        'EXT_texture_filter_anisotropic',
+        'KHR_parallel_shader_compile',
+        'OES_texture_float_linear',
+        'WEBGL_blend_func_extended',
+        'WEBGL_compressed_texture_astc',
+        'WEBGL_compressed_texture_etc',
+        'WEBGL_compressed_texture_etc1',
+        'WEBGL_compressed_texture_s3tc',
+        'WEBGL_compressed_texture_s3tc_srgb',
+        'WEBGL_debug_renderer_info',
+        'WEBGL_debug_shaders',
+        'WEBGL_lose_context',
+        'WEBGL_multi_draw',
+        'WEBGL_polygon_mode'
+      ];
+      // .getSupportedExtensions() can return null if context is lost, so coerce to empty array.
+      return (ctx.getSupportedExtensions() || []).filter(ext => supportedExtensions.includes(ext));
+    };
+  
+  
+  var GL = {
+  counter:1,
+  buffers:[],
+  programs:[],
+  framebuffers:[],
+  renderbuffers:[],
+  textures:[],
+  shaders:[],
+  vaos:[],
+  contexts:[],
+  offscreenCanvases:{
+  },
+  queries:[],
+  stringCache:{
+  },
+  unpackAlignment:4,
+  unpackRowLength:0,
+  recordError:(errorCode) => {
+        if (!GL.lastError) {
+          GL.lastError = errorCode;
+        }
+      },
+  getNewId:(table) => {
+        var ret = GL.counter++;
+        for (var i = table.length; i < ret; i++) {
+          table[i] = null;
+        }
+        return ret;
+      },
+  genObject:(n, buffers, createFunction, objectTable
+        ) => {
+        for (var i = 0; i < n; i++) {
+          var buffer = GLctx[createFunction]();
+          var id = buffer && GL.getNewId(objectTable);
+          if (buffer) {
+            buffer.name = id;
+            objectTable[id] = buffer;
+          } else {
+            GL.recordError(0x502 /* GL_INVALID_OPERATION */);
+          }
+          HEAP32[(((buffers)+(i*4))>>2)] = id;
+        }
+      },
+  getSource:(shader, count, string, length) => {
+        var source = '';
+        for (var i = 0; i < count; ++i) {
+          var len = length ? HEAPU32[(((length)+(i*4))>>2)] : undefined;
+          source += UTF8ToString(HEAPU32[(((string)+(i*4))>>2)], len);
+        }
+        return source;
+      },
+  createContext:(/** @type {HTMLCanvasElement} */ canvas, webGLContextAttributes) => {
+  
+        // BUG: Workaround Safari WebGL issue: After successfully acquiring WebGL
+        // context on a canvas, calling .getContext() will always return that
+        // context independent of which 'webgl' or 'webgl2'
+        // context version was passed. See:
+        //   https://bugs.webkit.org/show_bug.cgi?id=222758
+        // and:
+        //   https://github.com/emscripten-core/emscripten/issues/13295.
+        // TODO: Once the bug is fixed and shipped in Safari, adjust the Safari
+        // version field in above check.
+        if (!canvas.getContextSafariWebGL2Fixed) {
+          canvas.getContextSafariWebGL2Fixed = canvas.getContext;
+          /** @type {function(this:HTMLCanvasElement, string, (Object|null)=): (Object|null)} */
+          function fixedGetContext(ver, attrs) {
+            var gl = canvas.getContextSafariWebGL2Fixed(ver, attrs);
+            return ((ver == 'webgl') == (gl instanceof WebGLRenderingContext)) ? gl : null;
+          }
+          canvas.getContext = fixedGetContext;
+        }
+  
+        var ctx =
+          (canvas.getContext("webgl", webGLContextAttributes)
+            // https://caniuse.com/#feat=webgl
+            );
+  
+        if (!ctx) return 0;
+  
+        var handle = GL.registerContext(ctx, webGLContextAttributes);
+  
+        return handle;
+      },
+  registerContext:(ctx, webGLContextAttributes) => {
+        // without pthreads a context is just an integer ID
+        var handle = GL.getNewId(GL.contexts);
+  
+        var context = {
+          handle,
+          attributes: webGLContextAttributes,
+          version: webGLContextAttributes.majorVersion,
+          GLctx: ctx
+        };
+  
+        // Store the created context object so that we can access the context
+        // given a canvas without having to pass the parameters again.
+        if (ctx.canvas) ctx.canvas.GLctxObject = context;
+        GL.contexts[handle] = context;
+        if (typeof webGLContextAttributes.enableExtensionsByDefault == 'undefined' || webGLContextAttributes.enableExtensionsByDefault) {
+          GL.initExtensions(context);
+        }
+  
+        return handle;
+      },
+  makeContextCurrent:(contextHandle) => {
+  
+        // Active Emscripten GL layer context object.
+        GL.currentContext = GL.contexts[contextHandle];
+        // Active WebGL context object.
+        Module.ctx = GLctx = GL.currentContext?.GLctx;
+        return !(contextHandle && !GLctx);
+      },
+  getContext:(contextHandle) => {
+        return GL.contexts[contextHandle];
+      },
+  deleteContext:(contextHandle) => {
+        if (GL.currentContext === GL.contexts[contextHandle]) {
+          GL.currentContext = null;
+        }
+        if (typeof JSEvents == 'object') {
+          // Release all JS event handlers on the DOM element that the GL context is
+          // associated with since the context is now deleted.
+          JSEvents.removeAllHandlersOnTarget(GL.contexts[contextHandle].GLctx.canvas);
+        }
+        // Make sure the canvas object no longer refers to the context object so
+        // there are no GC surprises.
+        if (GL.contexts[contextHandle] && GL.contexts[contextHandle].GLctx.canvas) {
+          GL.contexts[contextHandle].GLctx.canvas.GLctxObject = undefined;
+        }
+        GL.contexts[contextHandle] = null;
+      },
+  initExtensions:(context) => {
+        // If this function is called without a specific context object, init the
+        // extensions of the currently active context.
+        context ||= GL.currentContext;
+  
+        if (context.initExtensionsDone) return;
+        context.initExtensionsDone = true;
+  
+        var GLctx = context.GLctx;
+  
+        // Detect the presence of a few extensions manually, ction GL interop
+        // layer itself will need to know if they exist.
+  
+        // Extensions that are available in both WebGL 1 and WebGL 2
+        webgl_enable_WEBGL_multi_draw(GLctx);
+        webgl_enable_EXT_polygon_offset_clamp(GLctx);
+        webgl_enable_EXT_clip_control(GLctx);
+        webgl_enable_WEBGL_polygon_mode(GLctx);
+        // Extensions that are only available in WebGL 1 (the calls will be no-ops
+        // if called on a WebGL 2 context active)
+        webgl_enable_ANGLE_instanced_arrays(GLctx);
+        webgl_enable_OES_vertex_array_object(GLctx);
+        webgl_enable_WEBGL_draw_buffers(GLctx);
+        {
+          GLctx.disjointTimerQueryExt = GLctx.getExtension("EXT_disjoint_timer_query");
+        }
+  
+        getEmscriptenSupportedExtensions(GLctx).forEach((ext) => {
+          // WEBGL_lose_context, WEBGL_debug_renderer_info and WEBGL_debug_shaders
+          // are not enabled by default.
+          if (!ext.includes('lose_context') && !ext.includes('debug')) {
+            // Call .getExtension() to enable that extension permanently.
+            GLctx.getExtension(ext);
+          }
+        });
+      },
+  };
+  
+  var findCanvasEventTarget = (target) => {
+      target = maybeCStringToJsString(target);
+  
+      // When compiling with OffscreenCanvas support and looking up a canvas to target,
+      // we first look up if the target Canvas has been transferred to OffscreenCanvas use.
+      // These transfers are represented/tracked by GL.offscreenCanvases object, which contain
+      // the OffscreenCanvas element for each regular Canvas element that has been transferred.
+  
+      // Note that each pthread/worker have their own set of GL.offscreenCanvases. That is,
+      // when an OffscreenCanvas is transferred from a pthread/main thread to another pthread,
+      // it will move in the GL.offscreenCanvases array between threads. Hence GL.offscreenCanvases
+      // represents the set of OffscreenCanvases owned by the current calling thread.
+  
+      // First check out the list of OffscreenCanvases by CSS selector ID ('#myCanvasID')
+      return GL.offscreenCanvases[target.substr(1)] // Remove '#' prefix
+      // If not found, if one is querying by using DOM tag name selector 'canvas', grab the first
+      // OffscreenCanvas that we can find.
+       || (target == 'canvas' && Object.keys(GL.offscreenCanvases)[0])
+      // If that is not found either, query via the regular DOM selector.
+       || document.querySelector(target);
+    };
+  
+  
+  
+  var _wgpuInstanceCreateSurface = (instancePtr, descriptor) => {
+      assert(descriptor);
+      var nextInChainPtr = HEAPU32[((descriptor)>>2)];
+      assert(nextInChainPtr !== 0);
+      assert(262144 ===
+        HEAP32[(((nextInChainPtr)+(4))>>2)]);
+      var sourceCanvasHTMLSelector = nextInChainPtr;
+  
+      assert(sourceCanvasHTMLSelector);assert(HEAPU32[((sourceCanvasHTMLSelector)>>2)] === 0);
+      var selectorPtr = HEAPU32[(((sourceCanvasHTMLSelector)+(8))>>2)];
+      assert(selectorPtr);
+      var canvas = findCanvasEventTarget(selectorPtr);
+      if (canvas.offscreenCanvas) canvas = canvas.offscreenCanvas;
+      var context = canvas.getContext('webgpu');
+      assert(context);
+      if (!context) return 0;
+  
+      context.surfaceLabelWebGPU = WebGPU.makeStringFromOptionalStringView(
+        descriptor + 4
+      );
+  
+      var ptr = _emwgpuCreateSurface(0);
+      WebGPU.Internals.jsObjectInsert(ptr, context);
+      return ptr;
+    };
+
+  
   var _wgpuQueueSubmit = (queuePtr, commandCount, commands) => {
       assert(commands % 4 === 0);
       var queue = WebGPU.getJsObject(queuePtr);
@@ -7534,9 +8440,163 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
     };
 
   
+  
+  function _wgpuQueueWriteBuffer(queuePtr,bufferPtr,bufferOffset_low, bufferOffset_high,data,size) {
+    var bufferOffset = convertI32PairToI53Checked(bufferOffset_low, bufferOffset_high);
+  
+    
+      var queue = WebGPU.getJsObject(queuePtr);
+      var buffer = WebGPU.getJsObject(bufferPtr);
+      // There is a size limitation for ArrayBufferView. Work around by passing in a subarray
+      // instead of the whole heap. crbug.com/1201109
+      var subarray = HEAPU8.subarray(data, data + size);
+      queue.writeBuffer(buffer, bufferOffset, subarray, 0, size);
+    ;
+  }
+
+  
   var _wgpuRenderPassEncoderEnd = (encoderPtr) => {
       var encoder = WebGPU.getJsObject(encoderPtr);
       encoder.end();
+    };
+
+  
+  
+  var _wgpuRenderPipelineGetBindGroupLayout = (pipelinePtr, groupIndex) => {
+      assert(groupIndex >= 0);
+      var pipeline = WebGPU.getJsObject(pipelinePtr);
+      var ptr = _emwgpuCreateBindGroupLayout(0);
+      WebGPU.Internals.jsObjectInsert(ptr, pipeline.getBindGroupLayout(groupIndex));
+      return ptr;
+    };
+
+  
+  var _wgpuSurfaceConfigure = (surfacePtr, config) => {
+      assert(config);
+      var context = WebGPU.getJsObject(surfacePtr);
+  
+      var presentMode = HEAPU32[(((config)+(44))>>2)];
+      assert(presentMode === 1 ||
+             presentMode === 0);
+  
+      var canvasSize = [
+        HEAPU32[(((config)+(24))>>2)],
+        HEAPU32[(((config)+(28))>>2)]
+      ];
+  
+      if (canvasSize[0] !== 0) {
+        context["canvas"]["width"] = canvasSize[0];
+      }
+  
+      if (canvasSize[1] !== 0) {
+        context["canvas"]["height"] = canvasSize[1];
+      }
+  
+      var configuration = {
+        "device": WebGPU.getJsObject(HEAPU32[(((config)+(4))>>2)]),
+        "format": WebGPU.TextureFormat[HEAP32[(((config)+(8))>>2)]],
+        "usage": HEAPU32[(((config)+(16))>>2)],
+        "alphaMode": WebGPU.CompositeAlphaMode[HEAP32[(((config)+(40))>>2)]],
+      };
+  
+      var viewFormatCount = HEAPU32[(((config)+(32))>>2)];
+      if (viewFormatCount) {
+        var viewFormatsPtr = HEAPU32[(((config)+(36))>>2)];
+        // viewFormatsPtr pointer to an array of TextureFormat which is an enum of size uint32_t
+        configuration['viewFormats'] = Array.from(HEAP32.subarray((((viewFormatsPtr)>>2)), ((viewFormatsPtr + viewFormatCount * 4)>>2)),
+          format => WebGPU.TextureFormat[format]);
+      }
+  
+      {
+        var nextInChainPtr = HEAPU32[((config)>>2)];
+  
+        if (nextInChainPtr !== 0) {
+          var sType = HEAP32[(((nextInChainPtr)+(4))>>2)];
+          assert(sType === 10);
+          assert(0 === HEAPU32[((nextInChainPtr)>>2)]);
+          var surfaceColorManagement = nextInChainPtr;
+          assert(surfaceColorManagement);assert(HEAPU32[((surfaceColorManagement)>>2)] === 0);
+          configuration.colorSpace = WebGPU.PredefinedColorSpace[HEAP32[(((surfaceColorManagement)+(8))>>2)]];
+          configuration.toneMapping = {
+            mode: WebGPU.ToneMappingMode[HEAP32[(((surfaceColorManagement)+(12))>>2)]],
+          };
+        }
+      }
+  
+      context.configure(configuration);
+    };
+
+  
+  
+  var _wgpuSurfaceGetCurrentTexture = (surfacePtr, surfaceTexturePtr) => {
+      assert(surfaceTexturePtr);
+      var context = WebGPU.getJsObject(surfacePtr);
+  
+      try {
+        var texturePtr = _emwgpuCreateTexture(0);
+        WebGPU.Internals.jsObjectInsert(texturePtr, context.getCurrentTexture());
+        HEAPU32[(((surfaceTexturePtr)+(4))>>2)] = texturePtr;
+        HEAP32[(((surfaceTexturePtr)+(8))>>2)] = 1;
+      } catch (ex) {
+        err(`wgpuSurfaceGetCurrentTexture() failed: ${ex}`);
+        HEAPU32[(((surfaceTexturePtr)+(4))>>2)] = 0;
+        HEAP32[(((surfaceTexturePtr)+(8))>>2)] = 6;
+      }
+    };
+
+  
+  var _wgpuSurfaceUnconfigure = (surfacePtr) => {
+      var context = WebGPU.getJsObject(surfacePtr);
+      context.unconfigure();
+    };
+
+  
+  
+  var _wgpuTextureCreateView = (texturePtr, descriptor) => {
+      var desc;
+      if (descriptor) {
+        var swizzle;
+        var nextInChainPtr = HEAPU32[((descriptor)>>2)];
+        if (nextInChainPtr !== 0) {
+          var sType = HEAP32[(((nextInChainPtr)+(4))>>2)];
+          assert(sType === 12);
+          assert(0 === HEAPU32[((nextInChainPtr)>>2)]);
+          var swizzleDescriptor = nextInChainPtr;
+          assert(swizzleDescriptor);assert(HEAPU32[((swizzleDescriptor)>>2)] === 0);
+          var swizzlePtr = swizzleDescriptor + 8;
+          var r = WebGPU.ComponentSwizzle[HEAP32[((swizzlePtr)>>2)]] || 'r';
+          var g = WebGPU.ComponentSwizzle[HEAP32[(((swizzlePtr)+(4))>>2)]] || 'g';
+          var b = WebGPU.ComponentSwizzle[HEAP32[(((swizzlePtr)+(8))>>2)]] || 'b';
+          var a = WebGPU.ComponentSwizzle[HEAP32[(((swizzlePtr)+(12))>>2)]] || 'a';
+          swizzle = `${r}${g}${b}${a}`;
+        }
+  
+        var mipLevelCount = HEAPU32[(((descriptor)+(24))>>2)];
+        var arrayLayerCount = HEAPU32[(((descriptor)+(32))>>2)];
+        desc = {
+          "label": WebGPU.makeStringFromOptionalStringView(
+            descriptor + 4),
+          "format": WebGPU.TextureFormat[HEAP32[(((descriptor)+(12))>>2)]],
+          "dimension": WebGPU.TextureViewDimension[HEAP32[(((descriptor)+(16))>>2)]],
+          "baseMipLevel": HEAPU32[(((descriptor)+(20))>>2)],
+          "mipLevelCount": mipLevelCount === 4294967295 ? undefined : mipLevelCount,
+          "baseArrayLayer": HEAPU32[(((descriptor)+(28))>>2)],
+          "arrayLayerCount": arrayLayerCount === 4294967295 ? undefined : arrayLayerCount,
+          "aspect": WebGPU.TextureAspect[HEAP32[(((descriptor)+(36))>>2)]],
+          "usage": HEAPU32[(((descriptor)+(40))>>2)],
+          "swizzle": swizzle,
+        };
+      }
+  
+      var texture = WebGPU.getJsObject(texturePtr);
+      var ptr = _emwgpuCreateTextureView(0);
+      WebGPU.Internals.jsObjectInsert(ptr, texture.createView(desc));
+      return ptr;
+    };
+
+  
+  var _wgpuTextureDestroy = (texturePtr) => {
+      WebGPU.getJsObject(texturePtr).destroy();
     };
 
 
@@ -7646,6 +8706,8 @@ var wasmImports = {
   /** @export */
   emscripten_date_now: _emscripten_date_now,
   /** @export */
+  emscripten_has_asyncify: _emscripten_has_asyncify,
+  /** @export */
   emscripten_resize_heap: _emscripten_resize_heap,
   /** @export */
   emscripten_set_dblclick_callback_on_thread: _emscripten_set_dblclick_callback_on_thread,
@@ -7672,9 +8734,19 @@ var wasmImports = {
   /** @export */
   emscripten_sleep: _emscripten_sleep,
   /** @export */
+  emwgpuAdapterRequestDevice: _emwgpuAdapterRequestDevice,
+  /** @export */
   emwgpuDelete: _emwgpuDelete,
   /** @export */
+  emwgpuDeviceCreateBuffer: _emwgpuDeviceCreateBuffer,
+  /** @export */
+  emwgpuDeviceCreateShaderModule: _emwgpuDeviceCreateShaderModule,
+  /** @export */
   emwgpuDeviceDestroy: _emwgpuDeviceDestroy,
+  /** @export */
+  emwgpuGetPreferredFormat: _emwgpuGetPreferredFormat,
+  /** @export */
+  emwgpuInstanceRequestAdapter: _emwgpuInstanceRequestAdapter,
   /** @export */
   exit: _exit,
   /** @export */
@@ -7690,9 +8762,37 @@ var wasmImports = {
   /** @export */
   wgpuCommandEncoderFinish: _wgpuCommandEncoderFinish,
   /** @export */
+  wgpuDeviceCreateBindGroup: _wgpuDeviceCreateBindGroup,
+  /** @export */
+  wgpuDeviceCreateBindGroupLayout: _wgpuDeviceCreateBindGroupLayout,
+  /** @export */
+  wgpuDeviceCreateCommandEncoder: _wgpuDeviceCreateCommandEncoder,
+  /** @export */
+  wgpuDeviceCreatePipelineLayout: _wgpuDeviceCreatePipelineLayout,
+  /** @export */
+  wgpuDeviceCreateRenderPipeline: _wgpuDeviceCreateRenderPipeline,
+  /** @export */
+  wgpuDeviceCreateTexture: _wgpuDeviceCreateTexture,
+  /** @export */
+  wgpuInstanceCreateSurface: _wgpuInstanceCreateSurface,
+  /** @export */
   wgpuQueueSubmit: _wgpuQueueSubmit,
   /** @export */
-  wgpuRenderPassEncoderEnd: _wgpuRenderPassEncoderEnd
+  wgpuQueueWriteBuffer: _wgpuQueueWriteBuffer,
+  /** @export */
+  wgpuRenderPassEncoderEnd: _wgpuRenderPassEncoderEnd,
+  /** @export */
+  wgpuRenderPipelineGetBindGroupLayout: _wgpuRenderPipelineGetBindGroupLayout,
+  /** @export */
+  wgpuSurfaceConfigure: _wgpuSurfaceConfigure,
+  /** @export */
+  wgpuSurfaceGetCurrentTexture: _wgpuSurfaceGetCurrentTexture,
+  /** @export */
+  wgpuSurfaceUnconfigure: _wgpuSurfaceUnconfigure,
+  /** @export */
+  wgpuTextureCreateView: _wgpuTextureCreateView,
+  /** @export */
+  wgpuTextureDestroy: _wgpuTextureDestroy
 };
 var wasmExports = createWasm();
 var ___wasm_call_ctors = createExportWrapper('__wasm_call_ctors', 0);
@@ -7784,6 +8884,7 @@ var dynCall_iiiiiiiii = Module['dynCall_iiiiiiiii'] = createExportWrapper('dynCa
 var dynCall_iiiii = Module['dynCall_iiiii'] = createExportWrapper('dynCall_iiiii', 5);
 var dynCall_did = Module['dynCall_did'] = createExportWrapper('dynCall_did', 3);
 var dynCall_viiiidd = Module['dynCall_viiiidd'] = createExportWrapper('dynCall_viiiidd', 7);
+var dynCall_viji = Module['dynCall_viji'] = createExportWrapper('dynCall_viji', 5);
 var dynCall_jiji = Module['dynCall_jiji'] = createExportWrapper('dynCall_jiji', 5);
 var dynCall_iidiiii = Module['dynCall_iidiiii'] = createExportWrapper('dynCall_iidiiii', 7);
 var _asyncify_start_unwind = createExportWrapper('asyncify_start_unwind', 1);
@@ -7846,7 +8947,6 @@ var missingLibrarySymbols = [
   'AsciiToString',
   'stringToAscii',
   'writeArrayToMemory',
-  'findCanvasEventTarget',
   'registerUiEventCallback',
   'registerFocusEventCallback',
   'fillDeviceOrientationEventData',
@@ -7910,13 +9010,6 @@ var missingLibrarySymbols = [
   '_setNetworkCallback',
   'heapObjectForWebGLType',
   'toTypedArrayIndex',
-  'webgl_enable_ANGLE_instanced_arrays',
-  'webgl_enable_OES_vertex_array_object',
-  'webgl_enable_WEBGL_draw_buffers',
-  'webgl_enable_WEBGL_multi_draw',
-  'webgl_enable_EXT_polygon_offset_clamp',
-  'webgl_enable_EXT_clip_control',
-  'webgl_enable_WEBGL_polygon_mode',
   'emscriptenWebGLGet',
   'computeUnpackAlignedImageSize',
   'colorChannelsInGlTextureFormat',
@@ -8068,6 +9161,7 @@ var unexportedSymbols = [
   'specialHTMLTargets',
   'maybeCStringToJsString',
   'findEventTarget',
+  'findCanvasEventTarget',
   'getBoundingClientRect',
   'fillMouseEventData',
   'registerMouseEventCallback',
@@ -8113,6 +9207,13 @@ var unexportedSymbols = [
   'tempFixedLengthArray',
   'miniTempWebGLFloatBuffers',
   'miniTempWebGLIntBuffers',
+  'webgl_enable_ANGLE_instanced_arrays',
+  'webgl_enable_OES_vertex_array_object',
+  'webgl_enable_WEBGL_draw_buffers',
+  'webgl_enable_WEBGL_multi_draw',
+  'webgl_enable_EXT_polygon_offset_clamp',
+  'webgl_enable_EXT_clip_control',
+  'webgl_enable_WEBGL_polygon_mode',
   'GL',
   'AL',
   'GLUT',

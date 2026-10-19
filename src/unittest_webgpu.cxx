@@ -58,15 +58,19 @@ typedef struct state_t {
 // state
 static state_t state;
 
-// helper functions
-static void             create_surface();
-static WGPUShaderModule create_shader(const char* code, const char* label);
-static WGPUBuffer       create_buffer(const void* data, size_t size, WGPUBufferUsage usage);
+inline WGPUStringView make_stringview(const char* str) {
+    WGPUStringView res = {0};
+    if (str) {
+        res.data = str;
+        res.length = strlen(str);
+    }
+    return res;
+}
 
 //--------------------------------------------------
 // vertex and fragment shaders
 //--------------------------------------------------
-static const char *vs_src = SHADER_SOURCE(
+static const char *wglsl_triangle = SHADER_SOURCE(
     // attribute/uniform decls
 
     struct VertexIn {
@@ -109,17 +113,12 @@ static const char *vs_src = SHADER_SOURCE(
 class Ut_WebGPU_Triangle_Window : public Fl_WebGPU_Window {
   Fl_Box *info_;   // shows WEBGPU_VERSION once the context exists
 
-
-  // Called whenever valid() is 0: first draw, resize of the context,
-  // or after a WebGL context loss/restore (the driver calls invalidate()).
-  void init_webgpu() {
-  }
-
 public:
   Ut_WebGPU_Triangle_Window(int X, int Y, int W, int H, Fl_Box *info)
     : Fl_WebGPU_Window(X, Y, W, H)
   {
     mode(FL_RGB);
+    clearValues = { 0.1, 0.3, 0.6, 1.0 };
   }
 
   ~Ut_WebGPU_Triangle_Window()
@@ -127,6 +126,208 @@ public:
         }
 
   void draw() FL_OVERRIDE {
+    // update rotation
+    state.var.rot += 0.1f;
+    state.var.rot = state.var.rot >= 360.f ? 0.0f : state.var.rot;
+    wgpuQueueWriteBuffer(wgpu.queue(), state.res.ubuffer, 0, &state.var.rot, sizeof(state.var.rot));
+
+    // draw quad (comment these five lines to simply clear the screen)
+    // wgpuRenderPassEncoderSetPipeline(wgpu.render_pass, wgpu.pipeline);
+    // wgpuRenderPassEncoderSetBindGroup(wgpu.render_pass, 0, state.res.bindgroup, 0, 0);
+    // wgpuRenderPassEncoderSetVertexBuffer(wgpu.render_pass, 0, state.res.vbuffer, 0, WGPU_WHOLE_SIZE);
+    // wgpuRenderPassEncoderSetIndexBuffer(wgpu.render_pass, state.res.ibuffer, WGPUIndexFormat_Uint16, 0, WGPU_WHOLE_SIZE);
+    // wgpuRenderPassEncoderDrawIndexed(wgpu.render_pass, 6, 1, 0, 0, 0);
+  }
+
+
+  WGPUShaderModule create_shader(const char* code, const char* label) {
+    WGPUShaderSourceWGSL wgsl = {
+      .chain.sType = WGPUSType_ShaderSourceWGSL,
+      .code = make_stringview(code),
+    };
+
+    WGPUShaderModuleDescriptor shader_module_descriptor = {
+        .nextInChain = (WGPUChainedStruct*)(&wgsl),
+        .label = { label },
+    };
+
+    return wgpuDeviceCreateShaderModule(wgpu.device, &shader_module_descriptor);
+  }
+
+  WGPUBuffer create_buffer(const void* data, size_t size, WGPUBufferUsage usage) {
+    WGPUBufferDescriptor wgpu_buffer_descriptor = {
+        .usage = WGPUBufferUsage_CopyDst | usage,
+        .size = size,
+    };
+    WGPUBuffer buffer = wgpuDeviceCreateBuffer(wgpu.device, &wgpu_buffer_descriptor);
+    wgpuQueueWriteBuffer(wgpu.queue(), buffer, 0, data, size);
+    return buffer;
+  }
+
+  void prepare_shaders()
+    {
+
+      // compile shaders
+      WGPUShaderModule shader_triangle = create_shader(wglsl_triangle, NULL);
+
+      // describe buffer layouts
+      WGPUVertexAttribute vertex_attributes[2] = {
+        // position: x, y
+        {
+          .format = WGPUVertexFormat_Float32x2,
+          .offset = 0,
+          .shaderLocation = 0,
+        },
+        // color: r, g, b
+        {
+          .format = WGPUVertexFormat_Float32x3,
+          .offset = 2 * sizeof(float),
+          .shaderLocation = 1,
+        }
+      };
+
+      WGPUVertexBufferLayout vertex_buffer_layout = {
+        .arrayStride = 5 * sizeof(float),
+        .attributeCount = 2,
+        .attributes = vertex_attributes,
+      };
+
+      // describe pipeline layout
+      WGPUBindGroupLayoutEntry bindgroup_layout_entry =
+        {
+          .binding = 0,
+          .visibility = WGPUShaderStage_Vertex,
+          // buffer binding layout
+          .buffer = {
+            .type = WGPUBufferBindingType_Uniform,
+          }
+        };
+
+      WGPUBindGroupLayoutDescriptor bindgroup_descriptor = {
+        .entryCount = 1,
+        // bind group layout entry
+        .entries = &bindgroup_layout_entry
+      };
+
+      WGPUBindGroupLayout bindgroup_layout = wgpuDeviceCreateBindGroupLayout(wgpu.device,
+                                                                             &bindgroup_descriptor);
+      WGPUPipelineLayoutDescriptor pipeline_layout_descriptor = {
+        .bindGroupLayoutCount = 1,
+        .bindGroupLayouts = &bindgroup_layout,
+      };
+
+      WGPUPipelineLayout pipeline_layout =
+        wgpuDeviceCreatePipelineLayout(wgpu.device,
+                                       &pipeline_layout_descriptor);
+
+      WGPUBlendState blend_state = {
+          .color = {
+            .operation = WGPUBlendOperation_Add,
+            .srcFactor = WGPUBlendFactor_One,
+            .dstFactor = WGPUBlendFactor_One,
+          },
+          .alpha = {
+            .operation = WGPUBlendOperation_Add,
+            .srcFactor = WGPUBlendFactor_One,
+            .dstFactor = WGPUBlendFactor_One,
+          }
+      };
+
+      WGPUColorTargetState target_state = {
+        .format = WGPUTextureFormat_BGRA8Unorm,
+        // blend state
+        .blend = &blend_state,
+        .writeMask = WGPUColorWriteMask_All,
+      };
+
+      WGPUFragmentState fragment_state = {
+        .module = shader_triangle,
+        .entryPoint = make_stringview("fs_main"),
+        .targetCount = 1,
+        .targets = &target_state,
+      };
+
+      WGPURenderPipelineDescriptor render_pipeline = {
+        // pipeline layout
+        .layout = pipeline_layout,
+        // vertex state
+        .vertex = {
+          .module = shader_triangle,
+          .entryPoint = make_stringview("vs_main"),
+          .bufferCount = 1,
+          .buffers = &vertex_buffer_layout,
+        },
+        // primitive state
+        .primitive = {
+          .topology = WGPUPrimitiveTopology_TriangleList,
+          .stripIndexFormat = WGPUIndexFormat_Undefined,
+          .frontFace = WGPUFrontFace_CCW,
+          .cullMode = WGPUCullMode_None,
+        },
+        // depth-stencil state
+        .depthStencil = NULL,
+        // multi-sampling state
+        .multisample = {
+          .count = 1,
+          .mask = 0xFFFFFFFF,
+          .alphaToCoverageEnabled = false,
+        },
+        // fragment state
+        .fragment = &fragment_state,
+      };
+
+      // create pipeline
+      wgpu.pipeline = wgpuDeviceCreateRenderPipeline(wgpu.device, &render_pipeline);
+
+      wgpuBindGroupLayoutRelease(bindgroup_layout);
+      wgpuPipelineLayoutRelease(pipeline_layout);
+      wgpuShaderModuleRelease(shader_triangle);
+    }
+
+  void prepare_meshes()
+    {
+      // create the vertex buffer (x, y, r, g, b) and index buffer
+      float const vertex_data[] = {
+        // x, y          // r, g, b
+        -0.5f, -0.5f,     1.0f, 0.0f, 0.0f, // bottom-left
+        0.5f, -0.5f,     0.0f, 1.0f, 0.0f, // bottom-right
+        0.5f,  0.5f,     0.0f, 0.0f, 1.0f, // top-right
+        -0.5f,  0.5f,     1.0f, 1.0f, 0.0f, // top-left
+      };
+      uint16_t index_data[] = {
+        0, 1, 2,
+        0, 2, 3,
+      };
+      state.res.vbuffer = create_buffer(vertex_data, sizeof(vertex_data), WGPUBufferUsage_Vertex);
+      state.res.ibuffer = create_buffer(index_data, sizeof(index_data), WGPUBufferUsage_Index);
+
+      // create the uniform bind group
+      state.res.ubuffer = create_buffer(&state.var.rot, sizeof(state.var.rot), WGPUBufferUsage_Uniform);
+
+
+      WGPUBindGroupEntry bind_group_entry = {
+        .binding = 0,
+        .buffer = state.res.ubuffer,
+        .offset = 0,
+        .size = sizeof(state.var.rot),
+      };
+
+      WGPUBindGroupDescriptor bind_group_descriptor = {
+          .layout = wgpuRenderPipelineGetBindGroupLayout(wgpu.pipeline, 0),
+          .entryCount = 1,
+          // bind group entry
+          .entries = &bind_group_entry
+      };
+
+      state.res.bindgroup = wgpuDeviceCreateBindGroup(wgpu.device, &bind_group_descriptor);
+    }
+
+  void prepare() FL_OVERRIDE {
+    //-----------------
+    // setup pipeline
+    //-----------------
+    prepare_shaders();
+    prepare_meshes();
   }
 };
 
