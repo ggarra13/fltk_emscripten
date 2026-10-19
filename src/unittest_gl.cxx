@@ -181,6 +181,7 @@ public:
     end();
   }
 
+#if HAVE_GL
   void show() FL_OVERRIDE {
     Fl_Group::show();
     if (gl_) gl_->show();
@@ -190,6 +191,8 @@ public:
     if (gl_) gl_->hide();          // this finally runs delete_div()
     Fl_Group::hide();
   }
+#endif
+
 };
 
 #else // !__EMSCRIPTEN__
@@ -212,4 +215,4 @@ static Fl_Widget *gl_test_create() {
   return new Ut_Gl_Test(UT_TESTAREA_X, UT_TESTAREA_Y, UT_TESTAREA_W, UT_TESTAREA_H);
 }
 
-UnitTest ut_gl(UT_TEST_GL, "OpenGL", gl_test_create);
+UnitTest ut_gl(UT_TEST_GL, "OpenGL3", gl_test_create);
