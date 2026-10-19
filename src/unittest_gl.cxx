@@ -21,9 +21,12 @@
 
 #include "unittests.h"
 
+#include <config.h>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Group.H>
+#if HAVE_GL
 #include <FL/Fl_Gl_Window.H>
+#endif
 #include <FL/fl_draw.H>
 #include <stdio.h>
 
@@ -33,6 +36,7 @@
 
 // ----- GL window ----------------------------------------------------- MARK: -
 
+#if HAVE_GL
 class Ut_Gl_Triangle_Window : public Fl_Gl_Window {
   GLuint program_;
   GLuint vbo_;
@@ -154,21 +158,26 @@ public:
     glDisableVertexAttribArray(col_loc_);
   }
 };
+#endif
 
 // ----- test group ---------------------------------------------------- MARK: -
 
 class Ut_Gl_Test : public Fl_Group {
+#if HAVE_GL
     Ut_Gl_Triangle_Window* gl_;
+#endif
 public:
   Ut_Gl_Test(int X, int Y, int W, int H) : Fl_Group(X, Y, W, H) {
     box(FL_NO_BOX);
     Fl_Box *info = new Fl_Box(X, Y, W, 24, "");
     info->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
     info->labelsize(12);
+#if HAVE_GL
     gl_ = new Ut_Gl_Triangle_Window(X, Y + 28, W, H - 28, info);
     gl_->border(0);
     gl_->end();
     resizable(gl_);
+#endif
     end();
   }
 

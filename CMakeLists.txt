@@ -16,7 +16,6 @@ FetchContent_Declare(
     FLTK
     GIT_REPOSITORY      git@github.com:ggarra13/fltk.git
     GIT_TAG             emscripten
-    #GIT_TAG             vk
     GIT_SHALLOW         ON
 )
 
@@ -36,7 +35,6 @@ set(GL_LINK_FLAGS "")
 if(FLTK_BUILD_GL)
     set(FLTK_GL fltk::gl)
     set(GL_LINK_FLAGS "-sMAX_WEBGL_VERSION=2 -sMIN_WEBGL_VERSION=1 -sLEGACY_GL_EMULATION=1 -sGL_UNSAFE_OPTS=1")
-    set(GL_TESTS src/unittest_gl.cxx)
 elseif(FLTK_BUILD_WEBGPU)
     set(WEBGPU_TESTS )
 endif()
@@ -57,9 +55,9 @@ add_executable(unittests
     src/unittest_core.cxx            
     src/unittest_schemes.cxx      
     src/unittest_text.cxx
-    ${GL_TESTS}
+    src/unittest_gl.cxx
     ${WEBGPU_TESTS}
 )
 target_link_libraries(unittests PRIVATE fltk::fltk fltk::images ${FLTK_GL})
 set_target_properties(unittests PROPERTIES SUFFIX .html
-    LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 ${GL_LINK_FLAGS} --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")
+    LINK_FLAGS "-s WASM=1 -sALLOW_MEMORY_GROWTH -sASYNCIFY -sMINIFY_HTML=0 -sOFFSCREENCANVAS_SUPPORT=1 ${GL_LINK_FLAGS} ${EM_DEBUG_FLAGS} --bind --shell-file ${CMAKE_CURRENT_LIST_DIR}/shell_minimal.html -Wl,--strip-all")
