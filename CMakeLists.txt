@@ -25,7 +25,7 @@ include(FetchContent)
 FetchContent_Declare(
     FLTK
     GIT_REPOSITORY      git@github.com:ggarra13/fltk.git
-    GIT_TAG             webgpu2
+    GIT_TAG             webgpu
     #GIT_TAG             emscripten # webgl
     #GIT_TAG             vk #  NO webgl and webgpu
     # GIT_SHALLOW         ON

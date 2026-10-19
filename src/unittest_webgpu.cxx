@@ -115,7 +115,7 @@ class Ut_WebGPU_Triangle_Window : public Fl_WebGPU_Window {
 
 public:
   Ut_WebGPU_Triangle_Window(int X, int Y, int W, int H, Fl_Box *info)
-    : Fl_WebGPU_Window(X, Y, W, H)
+    : Fl_WebGPU_Window(X, Y, W, H, "WebGPU Triangle Window")
   {
     mode(FL_RGB);
     clearValues = { 0.1, 0.3, 0.6, 1.0 };
@@ -132,11 +132,11 @@ public:
     wgpuQueueWriteBuffer(wgpu.queue(), state.res.ubuffer, 0, &state.var.rot, sizeof(state.var.rot));
 
     // draw quad (comment these five lines to simply clear the screen)
-    // wgpuRenderPassEncoderSetPipeline(wgpu.render_pass, wgpu.pipeline);
-    // wgpuRenderPassEncoderSetBindGroup(wgpu.render_pass, 0, state.res.bindgroup, 0, 0);
-    // wgpuRenderPassEncoderSetVertexBuffer(wgpu.render_pass, 0, state.res.vbuffer, 0, WGPU_WHOLE_SIZE);
-    // wgpuRenderPassEncoderSetIndexBuffer(wgpu.render_pass, state.res.ibuffer, WGPUIndexFormat_Uint16, 0, WGPU_WHOLE_SIZE);
-    // wgpuRenderPassEncoderDrawIndexed(wgpu.render_pass, 6, 1, 0, 0, 0);
+    wgpuRenderPassEncoderSetPipeline(wgpu.render_pass, wgpu.pipeline);
+    wgpuRenderPassEncoderSetBindGroup(wgpu.render_pass, 0, state.res.bindgroup, 0, 0);
+    wgpuRenderPassEncoderSetVertexBuffer(wgpu.render_pass, 0, state.res.vbuffer, 0, WGPU_WHOLE_SIZE);
+    wgpuRenderPassEncoderSetIndexBuffer(wgpu.render_pass, state.res.ibuffer, WGPUIndexFormat_Uint16, 0, WGPU_WHOLE_SIZE);
+    wgpuRenderPassEncoderDrawIndexed(wgpu.render_pass, 6, 1, 0, 0, 0);
   }
 
 
@@ -234,7 +234,7 @@ public:
       };
 
       WGPUColorTargetState target_state = {
-        .format = WGPUTextureFormat_BGRA8Unorm,
+        .format = WGPUTextureFormat_RGBA8Unorm,
         // blend state
         .blend = &blend_state,
         .writeMask = WGPUColorWriteMask_All,

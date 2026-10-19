@@ -886,91 +886,91 @@ function dbg(...args) {
 // === Body ===
 
 var ASM_CONSTS = {
-  141536: ($0) => { let ctx = Emval.toValue($0); ctx.canvas = null; },  
- 141588: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.lineWidth = 0; ctx.save(); },  
- 141667: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.lineWidth = 1; ctx.lineCap = 'butt'; ctx.lineJoin = 'miter'; ctx.setLineDash([ 1, 1 ]); ctx.rect($1, $2, $3, $4); ctx.stroke(); ctx.restore(); },  
- 141859: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.rect($1, $2, $3, $4); ctx.stroke(); },  
- 141932: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.fillRect($1 - 0.5, $2 - 0.5, $3, $4); },  
- 142007: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
- 142122: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
- 142237: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.rect($1, $2, $3, $4); ctx.clip(); },  
- 142320: ($0) => { let ctx = Emval.toValue($0); ctx.save(); ctx.restore(); },  
- 142380: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 142428: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.lineWidth = $1; ctx.lineCap = UTF8ToString($2); ctx.lineJoin = UTF8ToString($3); ctx.setLineDash(new Float64Array(HEAPF64.buffer, $4, $5)); },  
- 142605: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
- 142709: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.stroke(); },  
- 142833: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1 - 2, $2 - 2); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
- 142990: ($0, $1, $2) => { let ctx = Emval.toValue($0); let metrics = ctx.measureText(UTF8ToString($1, $2)); return metrics.width; },  
- 143098: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
- 143253: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.rotate(-1 * $5 * Math.PI / 180); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
- 143445: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.transform($1, $2, $3, $4, $5, $6); },  
- 143517: ($0) => { let ctx = Emval.toValue($0); ctx.resetTransform(); },  
- 143572: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 143617: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.stroke(); },  
- 143734: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 143782: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); },  
- 143885: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 143935: ($0, $1, $2, $3, $4, $5) => { let x = $1; let y = $2; let r = $3; let start = $4; let end = $5; let ctx = Emval.toValue($0); if (start > end) { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180); } else { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180, true); } },  
- 144198: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 144243: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale((w - 1) / 2.0, (h - 1) / 2.0); },  
- 144444: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.scale(2.0 / (w - 1), 2.0 / (h - 1)); ctx.translate(-x - w / 2.0 + 0.5, -y - h / 2.0 + 0.5); },  
- 144647: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 144695: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 144740: ($0, $1, $2, $3, $4) => { let x = $1; let y = $2; let w = $3; let h = $4; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale(w / 2.0, h / 2.0); },  
- 144903: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
- 144951: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.stroke(); },  
- 145055: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
- 145179: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $4); ctx.stroke(); },  
- 145323: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.stroke(); },  
- 145427: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.stroke(); },  
- 145551: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.lineTo($4, $5); ctx.stroke(); },  
- 145695: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 145740: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 145790: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 145835: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 145885: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 145930: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 145980: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
- 146025: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
- 146075: ($0, $1) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.save(); ctx.scale($1, $1); ctx.translate(0.5, 0.5); },  
- 146179: ($0, $1) => { let ctx = Emval.toValue($0); ctx.scale($1, $1); },  
- 146231: ($0) => { let ctx = Emval.toValue($0); ctx.stroke(); ctx.restore(); },  
- 146293: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
- 146372: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.fill(); ctx.restore(); },  
- 146449: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
- 146617: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
- 146805: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.fill(); ctx.restore(); },  
- 146971: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.fill(); ctx.restore(); },  
- 147157: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); ctx.rect($1 - 0.5, $2 - 0.5, 1, 1); ctx.fill(); },  
- 147258: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
- 147311: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
- 147364: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9) => { let ctx = Emval.toValue($0); if ($1) { ctx.moveTo($2, $3); } else { ctx.lineTo($2, $3); } ctx.bezierCurveTo($4, $5, $6, $7, $8, $9); },  
- 147501: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
- 147554: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
- 147607: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
- 147660: () => { let has_api = false; if ("queryLocalFonts" in window) { navigator.permissions.query({ name: "local-fonts" }).then((result) => { if (result.state === "granted" || result.state === "prompt") { has_api = true; }}); } return has_api; },  
- 147894: () => { let canvas = new OffscreenCanvas(100, 100); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
- 148024: ($0, $1) => { let ctx = Emval.toValue($0); ctx.font = UTF8ToString($1); },  
- 148086: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) => { let ctx = Emval.toValue($0); let idata = new ImageData(new Uint8ClampedArray(HEAPF64.buffer, $1, $2), $3, $4); ctx.save(); ctx.rect($5, $6, $9, $10); ctx.clip(); ctx.putImageData(idata, $5, $6, $7, $8, $9, $10); ctx.restore(); },  
- 148317: ($0, $1, $2, $3, $4, $5, $6, $7) => { let ctxt = Emval.toValue($0); let ctx = Emval.toValue($1); let cvs = ctx.canvas; ctxt.drawImage(cvs, $6, $7, $4, $5, $2, $3, $4, $5); },  
- 148455: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2); ctx.save(); },  
- 148535: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.restore(); },  
- 148598: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.style.zIndex = 0; } },  
- 148689: ($0) => { let div = document.getElementById("fltk_div" + $0); let canvas = document.getElementById("fltk_canvas" + $0); if (div && canvas) { div.style.zIndex = 1; canvas.focus(); } },  
- 148864: ($0, $1, $2, $3, $4, $5, $6) => { let body = document.getElementsByTagName("body")[0]; let div = document.createElement("DIV"); div.id = "fltk_div" + $0; div.tabIndex = "-1"; div.addEventListener("contextmenu", (e) => e.preventDefault()); div.style.position = "absolute"; div.style.left = $2 + "px"; div.style.top = $1 ? ($3 - 30) + "px" : $3 + "px"; div.style.zIndex = 1; div.style.backgroundColor = "#f1f1f1"; div.style.borderRight = "1px solid #555"; div.style.borderBottom = "1px solid #555"; div.style.textAlign = "center"; body.appendChild(div); let decor = document.createElement("DIV"); decor.id = "fltk_decor" + $0; decor.style.height = "16px"; decor.style.font = "14px Arial"; decor.style.padding = "6px"; decor.style.cursor = "move"; decor.style.zIndex = 2; decor.style.backgroundColor = "#2196F3"; decor.style.color = "#fff"; decor.style.cursor = "pointer"; div.appendChild(decor); let header = document.createElement("DIV"); header.textContent = UTF8ToString($6); header.id = "fltk_decor_header" + $0; header.style.font = "14px Arial"; decor.appendChild(header); let close = document.createElement("BUTTON"); close.id = "closewin"; close.textContent = "X"; close.style.font = "bold 14px Arial"; close.style.position = "absolute"; close.style.top = "1%"; close.style.right = "1px"; close.style.backgroundColor = "#2196F3"; close.style.border = "none"; close.style.color = "#fff"; close.addEventListener("click", () => div.hidden = true); decor.appendChild(close); let canvas = document.createElement("CANVAS"); canvas.id = "fltk_canvas" + $0; canvas.setAttribute("data-raw-handle", $0.toString()); canvas.tabIndex = "-1"; canvas.width = $4; canvas.height = $5; div.appendChild(canvas); canvas.addEventListener("click", () => canvas.focus()); decor.addEventListener("mousedown", () => canvas.focus()); div.addEventListener( "focusin", () => { canvas.focus(); div.style.zIndex = 1; }); div.addEventListener( "focusout", () => { canvas.blur(); div.style.zIndex = 0; }); if ($1 === 0) decor.hidden = true; function dragElement(elmnt) { var pos1 = 0; var pos2 = 0; var pos3 = 0; var pos4 = 0; if (document.getElementById("fltk_decor" + $0)) { document.getElementById("fltk_decor" + $0).onmousedown = dragMouseDown; } else { elmnt.onmousedown = dragMouseDown; } function dragMouseDown(e) { e = e || window.event; e.preventDefault(); pos3 = e.clientX; pos4 = e.clientY; document.onmouseup = closeDragElement; document.onmousemove = elementDrag; } function elementDrag(e) { e = e || window.event; e.preventDefault(); pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY; pos3 = e.clientX; pos4 = e.clientY; elmnt.style.left = (elmnt.offsetLeft - pos1) + "px"; elmnt.style.top = (elmnt.offsetTop - pos2) + "px"; _fltk_em_track_div($0, elmnt.offsetLeft|0, elmnt.offsetTop|0); } function closeDragElement() { document.onmouseup = null; document.onmousemove = null; } } dragElement(document.getElementById("fltk_div" + $0)); },  
- 151755: ($0) => { let div = document.getElementById("fltk_div" + $0); div.hidden = false; },  
- 151831: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = false; div.style.zIndex = 1; } },  
- 151942: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.remove(); } },  
- 152025: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = true; } },  
- 152113: ($0) => { let canvas = document.getElementById("fltk_canvas" + $0); let ctx = canvas.getContext("2d"); return Emval.toHandle(ctx); },  
- 152238: ($0) => { let decor = document.getElementById("fltk_decor" + $0); decor.hidden = !decor.hidden; },  
- 152328: ($0, $1, $2, $3, $4) => { let X = $1; let Y = $2; let W = $3; let H = $4; let canvas = document.getElementById("fltk_canvas" + $0); if (canvas) { canvas.width = W; canvas.height = H; } let div = document.getElementById("fltk_div" + $0); if (div) { div.style.left = X + "px"; div.style.top = Y + "px"; } },  
- 152609: ($0) => { document.body.style.cursor = UTF8ToString($0); },  
- 152660: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)).then( () => { }, () => { }, ); },  
- 152743: ($0, $1) => { let canvas = new OffscreenCanvas($0, $1); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
- 152871: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.translate($1, $2); },  
- 152927: ($0) => { let ctx = Emval.toValue($0); ctx.setTransform(1, 0, 0, 1, 0, 0); },  
- 152996: () => { return (typeof navigator !== 'undefined' && navigator.gpu) ? 1 : 0; }
+  141568: ($0) => { let ctx = Emval.toValue($0); ctx.canvas = null; },  
+ 141620: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.lineWidth = 0; ctx.save(); },  
+ 141699: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.lineWidth = 1; ctx.lineCap = 'butt'; ctx.lineJoin = 'miter'; ctx.setLineDash([ 1, 1 ]); ctx.rect($1, $2, $3, $4); ctx.stroke(); ctx.restore(); },  
+ 141891: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.rect($1, $2, $3, $4); ctx.stroke(); },  
+ 141964: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.fillRect($1 - 0.5, $2 - 0.5, $3, $4); },  
+ 142039: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
+ 142154: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); const col = `rgb(${$1} ${$2} ${$3})`; ctx.fillStyle = col; ctx.strokeStyle = col; },  
+ 142269: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.rect($1, $2, $3, $4); ctx.clip(); },  
+ 142352: ($0) => { let ctx = Emval.toValue($0); ctx.save(); ctx.restore(); },  
+ 142412: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 142460: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.lineWidth = $1; ctx.lineCap = UTF8ToString($2); ctx.lineJoin = UTF8ToString($3); ctx.setLineDash(new Float64Array(HEAPF64.buffer, $4, $5)); },  
+ 142637: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
+ 142741: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.stroke(); },  
+ 142865: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1 - 2, $2 - 2); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
+ 143022: ($0, $1, $2) => { let ctx = Emval.toValue($0); let metrics = ctx.measureText(UTF8ToString($1, $2)); return metrics.width; },  
+ 143130: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
+ 143285: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2 - 2.0); ctx.rotate(-1 * $5 * Math.PI / 180); ctx.textAlign = 'left'; ctx.fillText(UTF8ToString($3, $4), 0, 0); ctx.restore(); },  
+ 143477: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.transform($1, $2, $3, $4, $5, $6); },  
+ 143549: ($0) => { let ctx = Emval.toValue($0); ctx.resetTransform(); },  
+ 143604: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 143649: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.stroke(); },  
+ 143766: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 143814: ($0, $1, $2, $3) => { let x = $1; let y = $2; let r = $3; let ctx = Emval.toValue($0); ctx.arc(x, y, r, 0, 2 * Math.PI); },  
+ 143917: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 143967: ($0, $1, $2, $3, $4, $5) => { let x = $1; let y = $2; let r = $3; let start = $4; let end = $5; let ctx = Emval.toValue($0); if (start > end) { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180); } else { ctx.arc(x, y, r, -start * Math.PI / 180, -end * Math.PI / 180, true); } },  
+ 144230: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 144275: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale((w - 1) / 2.0, (h - 1) / 2.0); },  
+ 144476: ($0, $1, $2, $3, $4, $5, $6) => { let x = $1; let y = $2; let w = $3; let h = $4; let a1 = $5; let a2 = $6; let ctx = Emval.toValue($0); ctx.scale(2.0 / (w - 1), 2.0 / (h - 1)); ctx.translate(-x - w / 2.0 + 0.5, -y - h / 2.0 + 0.5); },  
+ 144679: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 144727: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 144772: ($0, $1, $2, $3, $4) => { let x = $1; let y = $2; let w = $3; let h = $4; let ctx = Emval.toValue($0); ctx.translate(x + w / 2.0 - 0.5, y + h / 2.0 - 0.5); ctx.scale(w / 2.0, h / 2.0); },  
+ 144935: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); },  
+ 144983: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.stroke(); },  
+ 145087: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.stroke(); },  
+ 145211: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $4); ctx.stroke(); },  
+ 145355: ($0, $1, $2, $3) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.stroke(); },  
+ 145459: ($0, $1, $2, $3, $4) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.stroke(); },  
+ 145583: ($0, $1, $2, $3, $4, $5) => { let ctx = Emval.toValue($0); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($1, $3); ctx.lineTo($4, $3); ctx.lineTo($4, $5); ctx.stroke(); },  
+ 145727: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 145772: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 145822: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 145867: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 145917: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 145962: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 146012: ($0) => { let ctx = Emval.toValue($0); ctx.save(); },  
+ 146057: ($0) => { let ctx = Emval.toValue($0); ctx.beginPath(); },  
+ 146107: ($0, $1) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.save(); ctx.scale($1, $1); ctx.translate(0.5, 0.5); },  
+ 146211: ($0, $1) => { let ctx = Emval.toValue($0); ctx.scale($1, $1); },  
+ 146263: ($0) => { let ctx = Emval.toValue($0); ctx.stroke(); ctx.restore(); },  
+ 146325: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
+ 146404: ($0) => { let ctx = Emval.toValue($0); ctx.closePath(); ctx.fill(); ctx.restore(); },  
+ 146481: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
+ 146649: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.stroke(); ctx.restore(); },  
+ 146837: ($0, $1, $2, $3, $4, $5, $6) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.closePath(); ctx.fill(); ctx.restore(); },  
+ 147003: ($0, $1, $2, $3, $4, $5, $6, $7, $8) => { let ctx = Emval.toValue($0); ctx.save(); ctx.beginPath(); ctx.moveTo($1, $2); ctx.lineTo($3, $4); ctx.lineTo($5, $6); ctx.lineTo($7, $8); ctx.closePath(); ctx.fill(); ctx.restore(); },  
+ 147189: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); ctx.rect($1 - 0.5, $2 - 0.5, 1, 1); ctx.fill(); },  
+ 147290: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
+ 147343: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
+ 147396: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9) => { let ctx = Emval.toValue($0); if ($1) { ctx.moveTo($2, $3); } else { ctx.lineTo($2, $3); } ctx.bezierCurveTo($4, $5, $6, $7, $8, $9); },  
+ 147533: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
+ 147586: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.moveTo($1, $2); },  
+ 147639: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.lineTo($1, $2); },  
+ 147692: () => { let has_api = false; if ("queryLocalFonts" in window) { navigator.permissions.query({ name: "local-fonts" }).then((result) => { if (result.state === "granted" || result.state === "prompt") { has_api = true; }}); } return has_api; },  
+ 147926: () => { let canvas = new OffscreenCanvas(100, 100); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
+ 148056: ($0, $1) => { let ctx = Emval.toValue($0); ctx.font = UTF8ToString($1); },  
+ 148118: ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) => { let ctx = Emval.toValue($0); let idata = new ImageData(new Uint8ClampedArray(HEAPF64.buffer, $1, $2), $3, $4); ctx.save(); ctx.rect($5, $6, $9, $10); ctx.clip(); ctx.putImageData(idata, $5, $6, $7, $8, $9, $10); ctx.restore(); },  
+ 148349: ($0, $1, $2, $3, $4, $5, $6, $7) => { let ctxt = Emval.toValue($0); let ctx = Emval.toValue($1); let cvs = ctx.canvas; ctxt.drawImage(cvs, $6, $7, $4, $5, $2, $3, $4, $5); },  
+ 148487: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.save(); ctx.translate($1, $2); ctx.save(); },  
+ 148567: ($0) => { let ctx = Emval.toValue($0); ctx.restore(); ctx.restore(); },  
+ 148630: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.style.zIndex = 0; } },  
+ 148721: ($0) => { let div = document.getElementById("fltk_div" + $0); let canvas = document.getElementById("fltk_canvas" + $0); if (div && canvas) { div.style.zIndex = 1; canvas.focus(); } },  
+ 148896: ($0, $1, $2, $3, $4, $5, $6) => { let body = document.getElementsByTagName("body")[0]; let div = document.createElement("DIV"); div.id = "fltk_div" + $0; div.tabIndex = "-1"; div.addEventListener("contextmenu", (e) => e.preventDefault()); div.style.position = "absolute"; div.style.left = $2 + "px"; div.style.top = $1 ? ($3 - 30) + "px" : $3 + "px"; div.style.zIndex = 1; div.style.backgroundColor = "#f1f1f1"; div.style.borderRight = "1px solid #555"; div.style.borderBottom = "1px solid #555"; div.style.textAlign = "center"; body.appendChild(div); let decor = document.createElement("DIV"); decor.id = "fltk_decor" + $0; decor.style.height = "16px"; decor.style.font = "14px Arial"; decor.style.padding = "6px"; decor.style.cursor = "move"; decor.style.zIndex = 2; decor.style.backgroundColor = "#2196F3"; decor.style.color = "#fff"; decor.style.cursor = "pointer"; div.appendChild(decor); let header = document.createElement("DIV"); header.textContent = UTF8ToString($6); header.id = "fltk_decor_header" + $0; header.style.font = "14px Arial"; decor.appendChild(header); let close = document.createElement("BUTTON"); close.id = "closewin"; close.textContent = "X"; close.style.font = "bold 14px Arial"; close.style.position = "absolute"; close.style.top = "1%"; close.style.right = "1px"; close.style.backgroundColor = "#2196F3"; close.style.border = "none"; close.style.color = "#fff"; close.addEventListener("click", () => div.hidden = true); decor.appendChild(close); let canvas = document.createElement("CANVAS"); canvas.id = "fltk_canvas" + $0; canvas.setAttribute("data-raw-handle", $0.toString()); canvas.tabIndex = "-1"; canvas.width = $4; canvas.height = $5; div.appendChild(canvas); canvas.addEventListener("click", () => canvas.focus()); decor.addEventListener("mousedown", () => canvas.focus()); div.addEventListener( "focusin", () => { canvas.focus(); div.style.zIndex = 1; }); div.addEventListener( "focusout", () => { canvas.blur(); div.style.zIndex = 0; }); if ($1 === 0) decor.hidden = true; function dragElement(elmnt) { var pos1 = 0; var pos2 = 0; var pos3 = 0; var pos4 = 0; if (document.getElementById("fltk_decor" + $0)) { document.getElementById("fltk_decor" + $0).onmousedown = dragMouseDown; } else { elmnt.onmousedown = dragMouseDown; } function dragMouseDown(e) { e = e || window.event; e.preventDefault(); pos3 = e.clientX; pos4 = e.clientY; document.onmouseup = closeDragElement; document.onmousemove = elementDrag; } function elementDrag(e) { e = e || window.event; e.preventDefault(); pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY; pos3 = e.clientX; pos4 = e.clientY; elmnt.style.left = (elmnt.offsetLeft - pos1) + "px"; elmnt.style.top = (elmnt.offsetTop - pos2) + "px"; _fltk_em_track_div($0, elmnt.offsetLeft|0, elmnt.offsetTop|0); } function closeDragElement() { document.onmouseup = null; document.onmousemove = null; } } dragElement(document.getElementById("fltk_div" + $0)); },  
+ 151787: ($0) => { let div = document.getElementById("fltk_div" + $0); div.hidden = false; },  
+ 151863: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = false; div.style.zIndex = 1; } },  
+ 151974: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.remove(); } },  
+ 152057: ($0) => { let div = document.getElementById("fltk_div" + $0); if (div) { div.hidden = true; } },  
+ 152145: ($0) => { let canvas = document.getElementById("fltk_canvas" + $0); let ctx = canvas.getContext("2d"); return Emval.toHandle(ctx); },  
+ 152270: ($0) => { let decor = document.getElementById("fltk_decor" + $0); decor.hidden = !decor.hidden; },  
+ 152360: ($0, $1, $2, $3, $4) => { let X = $1; let Y = $2; let W = $3; let H = $4; let canvas = document.getElementById("fltk_canvas" + $0); if (canvas) { canvas.width = W; canvas.height = H; } let div = document.getElementById("fltk_div" + $0); if (div) { div.style.left = X + "px"; div.style.top = Y + "px"; } },  
+ 152641: ($0) => { document.body.style.cursor = UTF8ToString($0); },  
+ 152692: ($0) => { navigator.clipboard.writeText(UTF8ToString($0)).then( () => { }, () => { }, ); },  
+ 152775: ($0, $1) => { let canvas = new OffscreenCanvas($0, $1); let ctx = canvas.getContext("2d"); ctx.lineWidth = 0; return Emval.toHandle(ctx); },  
+ 152903: ($0, $1, $2) => { let ctx = Emval.toValue($0); ctx.translate($1, $2); },  
+ 152959: ($0) => { let ctx = Emval.toValue($0); ctx.setTransform(1, 0, 0, 1, 0, 0); },  
+ 153028: () => { return (typeof navigator !== 'undefined' && navigator.gpu) ? 1 : 0; }
 };
 function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async () => { const itemList = await navigator.clipboard.read(); let imageType; const item = itemList.find(item => item.types.some(type => type.startsWith('image/'))); if (item) { const imageBlob = await item.getType(imageType = item.types.find(type => type.startsWith('image/'))); const imageBitmap = await createImageBitmap(imageBlob); const canvas = new OffscreenCanvas(imageBitmap.width, imageBitmap.height); const context = canvas.getContext('2d'); context.drawImage(imageBitmap, 0, 0); const imageData = context.getImageData(0, 0, canvas.width, canvas.height); return imageData; } else { return null; } }); }
 
@@ -8455,10 +8455,68 @@ function __asyncjs__get_clipboard_image() { return Asyncify.handleAsync(async ()
   }
 
   
+  var _wgpuRenderPassEncoderDrawIndexed = (passPtr, indexCount, instanceCount, firstIndex, baseVertex, firstInstance) => {
+      assert(indexCount >= 0);
+      assert(instanceCount >= 0);
+      firstIndex >>>= 0;
+      firstInstance >>>= 0;
+      var pass = WebGPU.getJsObject(passPtr);
+      pass.drawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance);
+    };
+
+  
   var _wgpuRenderPassEncoderEnd = (encoderPtr) => {
       var encoder = WebGPU.getJsObject(encoderPtr);
       encoder.end();
     };
+
+  
+  var _wgpuRenderPassEncoderSetBindGroup = (passPtr, groupIndex, groupPtr, dynamicOffsetCount, dynamicOffsetsPtr) => {
+      assert(groupIndex >= 0);
+      var pass = WebGPU.getJsObject(passPtr);
+      var group = WebGPU.getJsObject(groupPtr);
+      if (dynamicOffsetCount == 0) {
+        pass.setBindGroup(groupIndex, group);
+      } else {
+        pass.setBindGroup(groupIndex, group, HEAPU32, ((dynamicOffsetsPtr)>>2), dynamicOffsetCount);
+      }
+    };
+
+  
+  
+  function _wgpuRenderPassEncoderSetIndexBuffer(passPtr,bufferPtr,format,offset_low, offset_high,size_low, size_high) {
+    var offset = convertI32PairToI53Checked(offset_low, offset_high);
+    var size = convertI32PairToI53Checked(size_low, size_high);
+  
+    
+      var pass = WebGPU.getJsObject(passPtr);
+      var buffer = WebGPU.getJsObject(bufferPtr);
+      if (size == -1) size = undefined;
+      pass.setIndexBuffer(buffer, WebGPU.IndexFormat[format], offset, size);
+    ;
+  }
+
+  
+  var _wgpuRenderPassEncoderSetPipeline = (passPtr, pipelinePtr) => {
+      var pass = WebGPU.getJsObject(passPtr);
+      var pipeline = WebGPU.getJsObject(pipelinePtr);
+      pass.setPipeline(pipeline);
+    };
+
+  
+  
+  function _wgpuRenderPassEncoderSetVertexBuffer(passPtr,slot,bufferPtr,offset_low, offset_high,size_low, size_high) {
+    var offset = convertI32PairToI53Checked(offset_low, offset_high);
+    var size = convertI32PairToI53Checked(size_low, size_high);
+  
+    
+      assert(slot >= 0);
+      var pass = WebGPU.getJsObject(passPtr);
+      var buffer = WebGPU.getJsObject(bufferPtr);
+      if (size == -1) size = undefined;
+      pass.setVertexBuffer(slot, buffer, offset, size);
+    ;
+  }
 
   
   
@@ -8780,7 +8838,17 @@ var wasmImports = {
   /** @export */
   wgpuQueueWriteBuffer: _wgpuQueueWriteBuffer,
   /** @export */
+  wgpuRenderPassEncoderDrawIndexed: _wgpuRenderPassEncoderDrawIndexed,
+  /** @export */
   wgpuRenderPassEncoderEnd: _wgpuRenderPassEncoderEnd,
+  /** @export */
+  wgpuRenderPassEncoderSetBindGroup: _wgpuRenderPassEncoderSetBindGroup,
+  /** @export */
+  wgpuRenderPassEncoderSetIndexBuffer: _wgpuRenderPassEncoderSetIndexBuffer,
+  /** @export */
+  wgpuRenderPassEncoderSetPipeline: _wgpuRenderPassEncoderSetPipeline,
+  /** @export */
+  wgpuRenderPassEncoderSetVertexBuffer: _wgpuRenderPassEncoderSetVertexBuffer,
   /** @export */
   wgpuRenderPipelineGetBindGroupLayout: _wgpuRenderPipelineGetBindGroupLayout,
   /** @export */
