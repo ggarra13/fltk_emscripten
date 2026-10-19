@@ -1,4 +1,5 @@
 bin
 docs/*.wasm
 docs/*.data
+docs/*.map
 docs/*.js
