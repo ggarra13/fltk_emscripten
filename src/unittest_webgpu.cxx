@@ -163,10 +163,9 @@ public:
 
 
   WGPUShaderModule create_shader(const char* code, const char* label) {
-    WGPUShaderSourceWGSL wgsl = {
-      .chain.sType = WGPUSType_ShaderSourceWGSL,
-      .code = make_stringview(code),
-    };
+    WGPUShaderSourceWGSL wgsl = {};
+    wgsl.chain.sType = WGPUSType_ShaderSourceWGSL;
+    wgsl.code = make_stringview(code);
 
     WGPUShaderModuleDescriptor shader_module_descriptor = {
         .nextInChain = (WGPUChainedStruct*)(&wgsl),
