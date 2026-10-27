@@ -61,10 +61,17 @@ class Ut_Gl_Triangle_Window : public Fl_Gl_Window {
     return s;
   }
 
+  void free_gl() {
+    if (program_) { glDeleteProgram(program_); program_ = 0; }
+    if (vbo_)     { glDeleteBuffers(1, &vbo_); vbo_ = 0; }
+    ok_ = false;
+  }
+
   // Called whenever valid() is 0: first draw, resize of the context,
   // or after a WebGL context loss/restore (the driver calls invalidate()).
   void init_gl() {
-    ok_ = false;
+    free_gl();
+
     program_ = 0;
     vbo_ = 0;
 
@@ -130,9 +137,16 @@ public:
 
   ~Ut_Gl_Triangle_Window()
         {
-            glUseProgram(0);
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            // Do not touch GL here unless you make_current() first.
+            if (shown()) { make_current(); free_gl(); }
         }
+
+  void hide() FL_OVERRIDE {
+    if (shown()) {
+      make_current();
+      free_gl();        // delete while the context is still alive
+    }
+  }
 
   void draw() FL_OVERRIDE {
     if (!valid()) {
@@ -156,6 +170,10 @@ public:
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glDisableVertexAttribArray(pos_loc_);
     glDisableVertexAttribArray(col_loc_);
+
+    // leave the context clean for anyone else
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glUseProgram(0);
   }
 };
 #endif
@@ -182,17 +200,19 @@ public:
   }
 
 #if HAVE_GL
-  void show() FL_OVERRIDE {
-    Fl_Group::show();
-    if (gl_) gl_->show();
-  }
+    // This is needed for the unittests to not break.
+    void show() FL_OVERRIDE
+        {
+            Fl_Group::show();
+            gl_->show();
+        }
 
-  void hide() FL_OVERRIDE {
-    if (gl_) gl_->hide();          // this finally runs delete_div()
-    Fl_Group::hide();
-  }
+    void hide() FL_OVERRIDE
+        {
+            gl_->hide();
+            Fl_Group::hide();
+        }
 #endif
-
 };
 
 #else // !__EMSCRIPTEN__

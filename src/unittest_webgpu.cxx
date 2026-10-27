@@ -70,7 +70,7 @@ inline WGPUStringView make_stringview(const char* str) {
 //--------------------------------------------------
 // vertex and fragment shaders
 //--------------------------------------------------
-static const char *wglsl_triangle = SHADER_SOURCE(
+static const char *wglsl_quad = SHADER_SOURCE(
     // attribute/uniform decls
 
     struct VertexIn {
@@ -110,22 +110,44 @@ static const char *wglsl_triangle = SHADER_SOURCE(
     }
     );
 
-class Ut_WebGPU_Triangle_Window : public Fl_WebGPU_Window {
+class Ut_WebGPU_Quad_Window : public Fl_WebGPU_Window {
   Fl_Box *info_;   // shows WEBGPU_VERSION once the context exists
 
 public:
-  Ut_WebGPU_Triangle_Window(int X, int Y, int W, int H, Fl_Box *info)
-    : Fl_WebGPU_Window(X, Y, W, H, "WebGPU Triangle Window")
+  Ut_WebGPU_Quad_Window(int X, int Y, int W, int H, Fl_Box *info)
+    : Fl_WebGPU_Window(X, Y, W, H, "WebGPU Quad Window")
   {
+    info_ = info;
     mode(FL_RGB);
     clearValues = { 0.1, 0.3, 0.6, 1.0 };
   }
 
-  ~Ut_WebGPU_Triangle_Window()
+  ~Ut_WebGPU_Quad_Window()
         {
         }
 
+  void init_webgpu()
+    {
+      if (info_)
+      {
+        WGPUAdapterInfo info = {0};
+        wgpuAdapterGetInfo(wgpu.adapter, &info);
+
+        char buf[1024];
+        snprintf(buf, 1024, "Vendor: %s Architecture: %s Device: %s Description: %s",
+                 info.vendor.data, info.architecture.data,
+                 info.device.data, info.description.data);
+        info_->copy_label(buf);
+
+        wgpuAdapterInfoFreeMembers(info);
+      }
+    }
+
   void draw() FL_OVERRIDE {
+    if (!valid())
+    {
+      init_webgpu();
+    }
     // update rotation
     state.var.rot += 0.1f;
     state.var.rot = state.var.rot >= 360.f ? 0.0f : state.var.rot;
@@ -168,7 +190,7 @@ public:
     {
 
       // compile shaders
-      WGPUShaderModule shader_triangle = create_shader(wglsl_triangle, NULL);
+      WGPUShaderModule shader_quad = create_shader(wglsl_quad, NULL);
 
       // describe buffer layouts
       WGPUVertexAttribute vertex_attributes[2] = {
@@ -234,25 +256,26 @@ public:
       };
 
       WGPUColorTargetState target_state = {
-        .format = WGPUTextureFormat_RGBA8Unorm,
+        .format = wgpu.surface_format,
         // blend state
         .blend = &blend_state,
         .writeMask = WGPUColorWriteMask_All,
       };
 
       WGPUFragmentState fragment_state = {
-        .module = shader_triangle,
+        .module = shader_quad,
         .entryPoint = make_stringview("fs_main"),
         .targetCount = 1,
         .targets = &target_state,
       };
 
       WGPURenderPipelineDescriptor render_pipeline = {
+        .label = make_stringview("Quad Pipeline"),
         // pipeline layout
         .layout = pipeline_layout,
         // vertex state
         .vertex = {
-          .module = shader_triangle,
+          .module = shader_quad,
           .entryPoint = make_stringview("vs_main"),
           .bufferCount = 1,
           .buffers = &vertex_buffer_layout,
@@ -281,7 +304,7 @@ public:
 
       wgpuBindGroupLayoutRelease(bindgroup_layout);
       wgpuPipelineLayoutRelease(pipeline_layout);
-      wgpuShaderModuleRelease(shader_triangle);
+      wgpuShaderModuleRelease(shader_quad);
     }
 
   void prepare_meshes()
@@ -338,7 +361,7 @@ public:
 
 class Ut_WebGPUTest : public Fl_Group {
 #if HAVE_WEBGPU
-    Ut_WebGPU_Triangle_Window* webgpu_;
+    Ut_WebGPU_Quad_Window* webgpu_;
 #endif
 public:
   Ut_WebGPUTest(int X, int Y, int W, int H) : Fl_Group(X, Y, W, H) {
@@ -347,25 +370,13 @@ public:
     info->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
     info->labelsize(12);
 #if HAVE_WEBGPU
-    webgpu_ = new Ut_WebGPU_Triangle_Window(X, Y + 28, W, H - 28, info);
+    webgpu_ = new Ut_WebGPU_Quad_Window(X, Y + 28, W, H - 28, info);
     webgpu_->border(0);
     webgpu_->end();
     resizable(webgpu_);
 #endif
     end();
   }
-
-#if HAVE_WEBGPU
-  void show() FL_OVERRIDE {
-    Fl_Group::show();
-    if (webgpu_) webgpu_->show();
-  }
-
-  void hide() FL_OVERRIDE {
-    if (webgpu_) webgpu_->hide();          // this finally runs delete_div()
-    Fl_Group::hide();
-  }
-#endif
 };
 
 #else // !__EMSCRIPTEN__
@@ -375,7 +386,7 @@ public:
   Ut_WebGPUTest(int X, int Y, int W, int H) : Fl_Group(X, Y, W, H) {
     box(FL_NO_BOX);
     Fl_Box *b = new Fl_Box(X, Y, W, H,
-      "The GL triangle test uses WebGL-compatible GLES2 shaders\n"
+      "The WebGPU quad test uses WebGPU compatible shaders\n"
       "and is only built for the Emscripten platform.");
     b->align(FL_ALIGN_CENTER | FL_ALIGN_INSIDE);
     end();

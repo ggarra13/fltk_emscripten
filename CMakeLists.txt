@@ -1,20 +1,23 @@
 cmake_minimum_required(VERSION 3.20)
 project(fltk_emscripten)
 
+
+set(PORT_DIR "/home/gga/code/lib/emscripten/dawn/emdawnwebgpu_pkg/")
+set(EMDAWN_PORT "--use-port=${PORT_DIR}emdawnwebgpu.port.py")
+set(ENV{EM_CONFIG} "${PROJECT_SOURCE_DIR}/.emscripten")
+
+
 set(CMAKE_CXX_STANDARD 20)
 set(FLTK_BUILD_TEST OFF CACHE BOOL " " FORCE)
 set(FLTK_USE_PTHREADS OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLUID OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_FLTK_OPTIONS OFF CACHE BOOL " " FORCE)
-set(FLTK_BUILD_GL OFF CACHE BOOL " " FORCE)
 set(FLTK_BUILD_PDF_DOCS OFF CACHE BOOL " " FORCE)
 set(FLTK_OPTION_PEN_SUPPORT OFF CACHE BOOL " " FORCE)
 
-set(PORT_DIR "/home/gga/code/lib/emscripten/dawn/emdawnwebgpu_pkg/")
-set(EMDAWN_PORT "--use-port=${PORT_DIR}emdawnwebgpu.port.py")
-
+# Backend
+set(FLTK_BUILD_GL     ON CACHE BOOL " " FORCE)
 set(FLTK_BUILD_WEBGPU ON CACHE BOOL " " FORCE)
-set(FLTK_WEBGPU_INCLUDE_DIR "" CACHE PATH " " FORCE)
 
 if(FLTK_BUILD_WEBGPU)
     add_compile_options(${EMDAWN_PORT})   # applies to FLTK and your targets
@@ -38,7 +41,7 @@ FetchContent_MakeAvailable(FLTK)
 # Use -gsource-map instead if you want full C++ Source Maps (lets you debug .cxx files directly in browser DevTools).
 set(EM_DEBUG_FLAGS "-O0 -g3 -gsource-map")
 set(EM_RELEASE_FLAGS "-Wl,--strip-all")
-
+set(EM_DEBUG_FLAGS "${EM_RELEASE_FLAGS}")
 
 set(FLTK_GL)
 set(GL_LINK_FLAGS "")
