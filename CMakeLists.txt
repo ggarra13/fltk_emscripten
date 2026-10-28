@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(fltk_emscripten)
 
 
-set(PORT_DIR "/home/gga/code/lib/emscripten/dawn/emdawnwebgpu_pkg/")
+set(PORT_DIR "${PROJECT_SOURCE_DIR}/dawn/emdawnwebgpu_pkg/")
 set(EMDAWN_PORT "--use-port=${PORT_DIR}emdawnwebgpu.port.py")
 set(ENV{EM_CONFIG} "${PROJECT_SOURCE_DIR}/.emscripten")
 

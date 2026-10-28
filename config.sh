@@ -1,1 +1,3 @@
-emcmake cmake -Bbin -GNinja -DCMAKE_BUILD_TYPE=Release
+emcmake cmake -Bbin -GNinja \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DCMAKE_VERBOSE_MAKEFILE=ON
